@@ -1,0 +1,42 @@
+.App {
+  
+}
+:root {
+  --sunflower-yellow: #ffd201;
+  --transparent: rgba(255, 255, 255, 0);
+  --vivid-purple: #9013fe;
+  --aquamarine: #00d3ca;
+  --sky-blue: #6eb2fb;
+  --macaroni-and-cheese: #f1ad3d;
+  --greyish: #b4b4b4;
+  --transparent-two: rgba(255, 255, 255, 0);
+  --transparent-95: rgba(255, 255, 255, 0.95);
+  --white: #f7f7f7;
+  --white-two: #efefef;
+  --red-pink: #f62f5e;
+  --black: #2e2e2e;
+}
+*{
+  font-weight: 'Montserrat';
+}
+body{
+  background-color: var(--white);
+}
+@import 'sass-style/home';
+@import 'sass-style/landing';
+@import 'sass-style/modal';
+@import 'sass-style/navbar';
+@import 'sass-style/product';
+@import 'sass-style/textInput';
+@import 'sass-style/topbar';
+@import 'sass-style/button';
+@import 'sass-style/category';
+@import 'sass-style/mainpart';
+@import 'sass-style/pagination';
+@import 'sass-style/radio';
+@import 'sass-style/message';
+@import 'sass-style/auth';
+@import 'sass-style/productdetail';
+@import 'sass-style/cart';
+@import 'sass-style/order';
+@import 'sass-style/payment';

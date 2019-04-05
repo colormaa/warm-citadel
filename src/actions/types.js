@@ -1,0 +1,37 @@
+export const GET_ERRORS = 'GET_ERRORS';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const GET_PRODUCTS ="GET_PRODUCTS";
+export const SET_PRODUCT ="SET_PRODUCT";
+export const GET_PRODUCT_ATTR ="GET_PRODUCT_ATTR";
+
+export const PRODUCTS_LOADING = "PRODUCTS_LOADING";
+export const SET_INITIAL = "SET_INITIAL";
+export const SET_SEARCH = "SET_SEARCH";
+export const GET_COLORS = "GET_COLORS";
+export const GET_SIZES = "GET_SIZES";
+export const GET_DEPARTMENTS = "GET_DEPARTMENTS";
+export const GET_CATEGORIES = "GET_CATEGORIES";
+export const SET_CATEGORY = "SET_CATEGORY";
+export const SET_DEPARTMENT = "SET_DEPARTMENT";
+export const SHOW_LOGIN = "SHOW_LOGIN";
+export const SET_SAVE_PRODUCT = "SET_SAVE_PRODUCT";
+export const SET_PRODUCT_FROM_SAVED = "SET_PRODUCT_FROM_SAVED";
+
+export const CREATE_CART = "CREATE_CART";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const ADD_PRODUCT = "ADD_PRODUCT";
+export const ADD_QUANTITY_PRODUCT = "ADD_QUANTITY_PRODUCT";
+export const SUBTRACT_QUANTITY_PRODUCT = "SUBTRACT_QUANTITY_PRODUCT";
+export const CART_REMOVE_PRODUCT = "CART_REMOVE_PRODUCT";
+
+ 
+export const SET_PATH = "SET_PATH";
+export const EMPTY_CART = "EMPTY_CART";
+export const GET_COUNTRIES = "GET_COUNTRIES";
+export const GET_SHIPPING_REGION = "GET_SHIPPING_REGION";
+export const GET_TAX = "GET_TAX";
+export const SET_TOKEN = "SET_TOKEN";
+export const CREATE_ORDER = "CREATE_ORDER";
+export const GET_ORDERS = "GET_ORDERS";
+export const HIDE_LOGIN = "HIDE_LOGIN";
+export const STATUS = "STATUS";

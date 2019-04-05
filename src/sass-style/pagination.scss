@@ -1,0 +1,82 @@
+.mypagination{
+    width: 100%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding-inline-start: 0;
+    justify-content: space-between;
+    &__page-link{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        border-radius: 100px;
+        border: 1px solid transparent;
+        box-shadow: 0 2px 2px transparent;
+        outline: none;
+        background-color: transparent;
+        color: var(--black);
+        font-weight: 600;
+        transition: all 0.3s;
+        width: 30px;
+        height: 30px;
+        &:focus, &:hover, &:active, &__active{
+            background-color: var(--red-pink);
+            color: white;
+            outline: none;
+            box-shadow: 1px 4px 4px #aaa;
+            width: 40px;
+            height: 40px;
+            
+        }
+        &:active{
+
+        }
+    }
+    
+    &__page-item{
+        
+    }
+    &__p, &__n{
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+    &__disabled{
+        visibility: hidden;
+    }
+    &__p:hover &__pn, &__n:hover &__pn{
+        background-color: var(--red-pink);
+        color: white;
+        outline: none;
+        box-shadow: 1px 4px 4px #aaa;
+       
+    }
+    &__p{
+        margin-right: auto;
+
+    }
+    &__n{
+        margin-left: auto;
+    }
+    &__pn{
+        background-color: var(--white-two);
+        display: block;
+        border-radius: 100px;
+        color: var(--black);
+        font-weight: 600;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__next, &__pre{
+        width: 80px;
+        background-color: transparent;
+        border:none;
+        outline: none;
+        
+    }
+    
+}

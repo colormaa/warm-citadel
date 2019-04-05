@@ -1,0 +1,84 @@
+.cart{
+    display: grid;
+    width: 800px;
+    margin: 20px auto;
+    grid-template-columns: 1fr;
+    background-color: white;
+    padding: 20px;
+    &__header{
+        text-align: center;
+        display: grid;
+        grid-template-rows: 40px;
+        grid-template-columns: 100px 1fr 130px;
+        button{
+            box-shadow: 1px 2px 2px #aaa;
+        }
+        margin-bottom: 20px;
+    }
+    &__table{
+        &__header{
+            font-size: 14px;
+        }
+        tr{
+            display: grid;
+            grid-template-columns: 60px 1fr 1fr 50px 100px 80px;
+        }
+        td{
+        display: flex;
+        font-size: 12px;
+        padding: 5px;
+         text-align: center;
+         justify-content: center;
+        }
+        th{
+
+        }
+        &__icon{
+            font-size: 20px;
+            line-height: 0.9;
+            margin: 0 3px;
+            color: var(--red-pink);
+            font-weight: 600;
+            cursor: pointer;
+        }
+    }
+    &__price{
+        font-size: 20px;
+        color: var(--red-pink);
+        font-weight: 700;
+        letter-spacing: 2px;
+    }   
+}
+.quantity__pink{
+    display: flex;
+    &__button{
+        width: 30px;
+        height: 30px;
+        line-height: 0.1;
+        padding: 0;
+        outline: none;
+        background-color: var(--red-pink);
+        border: 1px solid transparent;
+        border-radius: 3px;
+        color: white;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        cursor:pointer;
+        padding-top: 10px;
+        font-size: 20px;
+    }
+    p{
+        border: 1px solid #999;
+        margin: 0px 5px;
+        padding: 5px 10px;
+        align-self: flex-start;
+        border-radius: 3px;
+    }
+}
+ @media only screen and (max-width: 800px){
+     .cart{
+         width: 90%;
+         margin: 20px;
+     }
+ }

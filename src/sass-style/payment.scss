@@ -1,0 +1,24 @@
+.payment{
+    width: 800px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+    border-radius: 5px;
+    &__form{
+        button
+        {
+            margin-top: 30px;
+            &:hover{
+                margin-top: 32px;
+                box-shadow: 0 2px 2px #aaa;
+            }
+            width: 100%;
+        }
+    }
+    &__title{
+        color: var(--red-pink);
+        text-align: center;
+    }
+}

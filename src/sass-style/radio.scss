@@ -1,0 +1,117 @@
+.color__form__group{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    list-style: none;
+    padding-inline-start:  0;
+    li{
+        position: relative;
+    }
+    margin-bottom: 0;
+}
+.color__form__radio{
+    visibility: hidden;
+
+    &__item{
+        width: 22px;
+        height: 22px;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        position: absolute;
+        top: -4px;
+        left: 0px;
+        z-index: 1;
+    }
+    &:checked + &__item{
+        border: 1px solid #aaa;
+        background-color: white;
+
+    }
+    &__label{
+        width: 14px;
+        height: 14px;
+        left: 4px;
+        background-color: pink;
+        border: 3px solid transparent;
+        border-radius: 50%;
+        position: absolute;
+        z-index:10;
+        cursor: pointer;
+    }
+    &:checked ~ &__label{
+        
+    }
+
+    
+}
+
+.radio__color__White{
+    background-color: var(--white);
+}
+
+.radio__color__Black{
+    background-color: var(--black);
+}
+.radio__color__Red{
+    background-color: var(--red-pink);
+}
+.radio__color_Orange{
+    background-color: #fe5c07;
+}
+.radio__color__Yellow{
+    background-color: #f8e71c;
+}
+.radio__color__Green{
+    background-color: #7ed321;
+}
+.radio__color__Purple{
+    background-color: var(--vivid-purple);
+}
+.radio__color__Blue{
+    background-color: var(--sky-blue);
+}
+
+
+
+.size__form__group{
+   
+   list-style: none;
+   padding-inline-start: 0;
+   width: 100%;
+   padding: 0;
+   margin: 0;
+
+    li{
+       float: left;
+       padding-right: 10px;
+       position: relative;
+        
+    }
+}
+.size__form__radio{
+    visibility: hidden;
+    width: 0;
+
+    &__item{
+        
+    }
+    &:checked + &__item{
+        
+
+    }
+    &__label{
+        
+        
+        color: rgba(0,0,0,0.5);
+        background-color: var(--white-two);
+        width: 54px;
+        height: 24px;
+        border-radius: 2px;
+    }
+    &:checked ~ &__label{
+        background-color: var(--red-pink);
+    }
+
+    
+}

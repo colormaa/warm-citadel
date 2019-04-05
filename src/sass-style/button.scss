@@ -1,0 +1,13 @@
+.button{
+    border: 1px solid transparent;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 10px;
+    outline: none;
+    padding: 10px;
+    border-radius: 2px;
+  }
+  .button.red-pink{
+    background-color: var(--red-pink);
+  }

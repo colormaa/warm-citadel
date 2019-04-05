@@ -1,0 +1,297 @@
+.navbar{
+    background-color: var(--black);
+   
+    width: 100%;
+    padding: 20px 30px;
+    display: grid;
+    grid-template-columns: 200px 1fr 50px;
+    align-items: center;
+    &__logo{
+        color: var(--red-pink);
+        font-size: 24px;
+        font-family: 'Montserrat';
+        font-weight: 600;
+        letter-spacing: 4px;
+        
+    }
+    &__nav{
+        list-style: none;
+        
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        
+        &__item{
+            font-family: 'Montserrat';
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 36px;
+            margin-top: 10px;
+            color: white;
+            background-color: transparent;
+            border: none;
+            padding: 0 10px;
+            &:hover, &:active, &:focus{
+                color: var(--red-pink);
+                outline: none;
+            }
+        }
+        
+        
+    }
+    
+    
+    &__form{
+        display: flex;
+        button{
+            background-color: transparent;
+            border: 0;
+            outline: none;
+            z-index: 20;
+            position: relative;
+            margin-right: -15px;
+            position: relative;
+            i{
+                position: absolute;
+                top: 2px;
+                color: white;
+                
+                font-size: 22px;
+            }
+
+        }
+        &__close{
+            position: relative;
+            z-index: 20;
+            i{
+                position: absolute;
+                top: 5px;
+                right: 10px;
+                color: white;
+                
+                font-size: 15px;
+            }
+        }
+        
+        &__input{
+            width: 260px;
+            padding: 5px 30px 5px 35px;
+            outline: none;
+            border: 1px solid transparent;
+            border-radius: 18px;
+            background-color: rgba(255,255,255,0.5);
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        &__input::placeholder{
+            color: white;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+        }
+    }
+    &__notification{
+        cursor: pointer;
+        position: relative;
+        i{
+            color: white;
+            font-size: 27px;
+        }
+        p{
+            position: absolute;
+            z-index: 20;
+            top: 13px;
+            left: 10px;
+            border: 1px solid var(--black);
+            color: var(--red-pink);
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            padding-top: 3px;
+
+            
+        }
+    }
+    &__toggle{
+        display: none;
+        &__toggleshow{
+            display: block;
+            animation: showIn 0.3s  ease-in-out;
+        
+        }
+        &__toggleclose{
+            display:none;
+            animation: showOff 0.3s  ease-in-out;
+        }
+        &__button{
+            display: flex;
+            flex-direction: column;
+            
+            
+            p{
+                width: 20px;
+                padding: 0;
+                margin-block-end: 0;
+                margin-block-start: 0;
+                height: 3px;
+                border-radius: 2px;
+                margin: 3px;
+                line-height: 0.5;
+                background-color: white;                
+            }
+        }
+        &__container{
+            display: inherit;
+            background-color: var(--red-pink);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 200;
+        }
+        &__close{
+            position: fixed;
+            top: 40px; 
+            right: 40px;
+            font-size: 34px;
+            color: var(--red-pink);
+            width: 40px;
+            height: 40px;
+            margin: 0;
+            line-height: 1;
+            background-color: white;
+            padding: 0;
+            border-radius: 50%;
+            font-weight: 600;
+            z-index: 300;
+            
+
+        }
+        &__nav{
+            list-style: none;
+            
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100%;
+        }
+        &__nav-link{
+            margin: 20px 0;
+            color: var(--red-pink);
+            background-color:rgba(255,255,255, 0.9);
+            border: 1px solid transparent;
+            padding: 5px 20px;
+            width: 200px;
+            text-decoration: none;
+            border-radius: 100px;
+            &:focus, &:hover, &:active{
+                background-color:rgba(255,255,255, 1);
+                color: var(--red-pink);
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 20px;
+            }
+        }
+
+    }
+}
+@keyframes showIn{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes showOff{
+    0%{
+        opacity: 1;
+        display: block;
+    }
+    100%{
+        opacity: 0;
+        display: none;
+    }
+}
+@media only screen and (max-width: 1000px){
+    .navbar{
+        padding: 30px;
+        grid-template-columns: 200px 50vw 1fr 50px;
+        position: relative;
+    }
+    .navbar__form{
+        &__input{
+            width: 700px;
+        }
+    }
+    .navbar__notification{
+        position: absolute;
+        right: 100px;
+        top: 30px;
+    }
+    .navbar__logo{
+        margin-right: auto;
+    }
+    .navbar__nav{
+        display:none;
+        
+        
+    }
+    .navbar__toggle{
+        display: block;
+        position: absolute;
+        right:  50px;
+        top: 30px;
+    }
+}
+@media only screen and (max-width: 780px){
+    .navbar{
+        grid-template-columns: 1fr;
+        &__form{
+
+            &__input{
+                margin: 10px;
+                width: 85vw;
+                
+            }
+            &__close, button{
+                    position: absolute;
+                    top: 75px;
+            }
+            &__close{
+                right: 50px;
+            }
+            button{
+                left: 40px;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 600px){
+    .navbar{
+        &__form{
+            &__close{
+                right: 30px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .navbar{
+        &__form{
+            &__close{
+                right: 20px;
+            }
+        }
+    }
+}

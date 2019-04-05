@@ -1,0 +1,40 @@
+.order{
+    width: 800px;
+    text-align: center;
+    margin: 20px auto;
+    background-color: white;
+    padding: 30px;
+    &__form{
+        display: flex;
+        flex-direction: column;
+         div{
+             display: flex;
+             width: 100%;
+             padding: 5px 0px;
+             justify-content: space-between;
+             .order__third{
+                display: grid;
+                grid-template-columns: 90%;
+                
+            }
+            .select__contain{
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 30px;
+            }
+             select{
+                 width: 96%;
+                 border-radius: 6px;
+                 outline: none;
+                 color: black;
+                 padding: 5px;
+                 color: #333;
+             }
+         }
+         button:hover{
+             margin-top: 1px;
+             box-shadow: 0 2px 2px #aaa;
+         }
+    }
+    
+}
