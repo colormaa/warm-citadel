@@ -6,7 +6,8 @@ const initialState = {
     loginshow: false, 
     path: null, 
     token: null, 
-    customer:{}
+    customer:{}, 
+    facebookToken: null
 }
 export default function(state = initialState, action){
     switch(action.type){
@@ -39,6 +40,12 @@ export default function(state = initialState, action){
             ...state, 
             path: action.payload
         }
+        case types.FACEBOOK_TOKEN: 
+        return{
+            ...state, 
+            facebookToken: action.payload
+        }
+
 
         default:
         return state;

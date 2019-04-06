@@ -35,3 +35,4 @@ export const CREATE_ORDER = "CREATE_ORDER";
 export const GET_ORDERS = "GET_ORDERS";
 export const HIDE_LOGIN = "HIDE_LOGIN";
 export const STATUS = "STATUS";
+export const FACEBOOK_TOKEN = "FACEBOOK_TOKEN";

@@ -31,6 +31,7 @@ export const registerUser =(regcus)=>dispatch=>{
     
 }
 export const facebookLogin=(fb)=>dispatch=>{
+    dispatch({type: types.FACEBOOK_TOKEN, payload: fb.accessToken});
     axios.post('https://backendapi.turing.com/customers/facebook', fb.accessToken)
     .then(res=>{
         console.log("facebook login success", res);
@@ -88,6 +89,7 @@ export const setPath =(path)=>dispatch=>{
         payload: path
     })
 }
+
 export const setCurrentUser =(customer)=>{
     return{
         type: types.SET_CURRENT_USER, 
