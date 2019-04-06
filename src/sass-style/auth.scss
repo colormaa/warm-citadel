@@ -3,6 +3,7 @@
    
     box-sizing: border-box;
     width: 400px;
+    display: grid;
     &-header{
         text-align: center;
         
@@ -43,6 +44,19 @@
         color: red;
         margin-top: -40px;
         margin-bottom: 40px;
+    }
+    h3{
+        display: flex;
+        justify-content: center;
+    }
+    &__fbbutton{
+        background-color: #4065AE;
+        border-radius: 4px;
+        outline: none;
+        border: 1px solid transparent;
+        color: white;
+        font-weight: 600;
+        padding: 10px;
     }
     
 }
