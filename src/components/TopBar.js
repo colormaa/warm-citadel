@@ -5,6 +5,8 @@ import TextInput from '../common/TextInput';
 import {connect} from 'react-redux';
 import Modal from './Modal';
 import Auth from './Auth';
+import FacebookAuth from 'react-facebook-auth';
+import facebookbutton from '../common/facebookbutton';
 
 import Button from '../common/Button';
 import {loginUser, registerUser, logoutUser} from '../actions/authActions';
@@ -81,6 +83,10 @@ class TopBar extends Component {
         this.props.registerUser(regcus);
         
     }
+     authenticate = (response) => {
+        console.log(response);
+        // Api call to server so we can validate the token
+      };
     onLoginClick =()=>{
         console.log("login modal clicked");
         const regcus = {
@@ -174,7 +180,11 @@ class TopBar extends Component {
         </h3>
         <h3 className = "topbar__helper">
             <Link to ="/" className = "nav-link black">Daily Deals</Link>
-            <Link to ="/" className = "nav-link black">Sell</Link>
+            <FacebookAuth
+      appId="2294600997485658"
+      callback={this.authenticate}
+      component={facebookbutton}
+    />
             <Link to ="/" className = "nav-link black">Help & Contact</Link>
         </h3>
         <div className="topbar__lang">
