@@ -126,7 +126,7 @@ class TopBar extends Component {
 
             facebook = {
                 <FacebookAuth
-                appId="2294600997485658"
+                appId="352854622106208"
                 callback={this.authenticate}
                 component={facebookbutton}
               />
@@ -168,7 +168,7 @@ class TopBar extends Component {
             }
                     facebook = {
                          <FacebookAuth
-                         appId="2294600997485658"
+                         appId="352854622106208"
                          callback={this.authenticate}
                          component={facebookbutton}
                        />
