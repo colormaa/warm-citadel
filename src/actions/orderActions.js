@@ -49,7 +49,7 @@ export const createCharge =(charge)=>dispatch=>{
         console.log("res ", res);
     })
     .catch(err=>{
-        console.log("err ", err);
+        console.log("err ", err.response.error);
     });
 }
 
