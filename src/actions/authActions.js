@@ -30,6 +30,27 @@ export const registerUser =(regcus)=>dispatch=>{
     })
     
 }
+export const facebookLogin=(fb)=>dispatch=>{
+    axios.post('https://backendapi.turing.com/customers/facebook', fb.accessToken)
+    .then(res=>{
+        console.log("facebook login success", res);
+        const token = res.data.accessToken;
+        const customer = jwt_decode(token);
+        localStorage.setItem('jwtToken', token);
+        setAuthToken(token);
+        dispatch(setProductFromSaved());
+        dispatch(setCurrentUser(customer));
+        dispatch(setToken({token: token, customer: customer}));
+        dispatch({
+            type: types.HIDE_LOGIN
+        })
+    })
+    .catch(err=>{
+        console.log("facebook login ", err);
+        console.log("facebook login ", err.response.data);
+        console.log("facebook login ", err.response);
+    })
+}
 export const setToken =(token)=>dispatch=>{
     dispatch({type: types.SET_TOKEN, 
     payload: token

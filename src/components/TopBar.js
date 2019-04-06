@@ -9,7 +9,7 @@ import FacebookAuth from 'react-facebook-auth';
 import facebookbutton from '../common/facebookbutton';
 
 import Button from '../common/Button';
-import {loginUser, registerUser, logoutUser} from '../actions/authActions';
+import {loginUser, registerUser, logoutUser, facebookLogin} from '../actions/authActions';
 
 class TopBar extends Component {
     state ={
@@ -85,6 +85,14 @@ class TopBar extends Component {
     }
      authenticate = (response) => {
         console.log(response);
+        let fbauth = {};
+        fbauth.accessToken = response.accessToken;
+        fbauth.email = response.email;
+        fbauth.expires = response.data_access_expiration_time;
+        fbauth.name = response.name;
+        if(fbauth.accessToken!== null){
+            this.props.facebookLogin(fbauth);
+        }
         // Api call to server so we can validate the token
       };
     onLoginClick =()=>{
@@ -114,7 +122,15 @@ class TopBar extends Component {
                             className = "nav-link"><span> </span> Login</button></p>
               </div>   
 
-            }>
+            }
+
+            facebook = {
+                <FacebookAuth
+                appId="2294600997485658"
+                callback={this.authenticate}
+                component={facebookbutton}
+              />
+           }>
                         <TextInput placeholder = "* Email" type = "text" 
                             error = {errorlogin.field? (errorlogin.field.includes("email") ? true: false)
                             : false}
@@ -149,7 +165,15 @@ class TopBar extends Component {
                             className = "nav-link"><span> </span> Register</button></p>
                 </div>
                 
-            }>
+            }
+                    facebook = {
+                         <FacebookAuth
+                         appId="2294600997485658"
+                         callback={this.authenticate}
+                         component={facebookbutton}
+                       />
+                    }
+                    >
                     <TextInput placeholder = "* Email" type = "text" 
                     error = {errorlogin.field? (errorlogin.field.includes("email") ? true: false)
                     : false}
@@ -180,11 +204,7 @@ class TopBar extends Component {
         </h3>
         <h3 className = "topbar__helper">
             <Link to ="/" className = "nav-link black">Daily Deals</Link>
-            <FacebookAuth
-      appId="2294600997485658"
-      callback={this.authenticate}
-      component={facebookbutton}
-    />
+           
             <Link to ="/" className = "nav-link black">Help & Contact</Link>
         </h3>
         <div className="topbar__lang">
@@ -207,4 +227,4 @@ const mapStateToProps = state => ({
     auth: state.auth, 
     cart: state.cart
 })
-export default connect(mapStateToProps, {loginUser, registerUser, logoutUser})(TopBar);
+export default connect(mapStateToProps, {loginUser, facebookLogin, registerUser, logoutUser})(TopBar);
