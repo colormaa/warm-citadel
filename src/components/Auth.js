@@ -16,7 +16,8 @@ const Auth=(props)=> {
         <div className="auth-footer">
             {props.footer}
         </div>
-        <h3>OR</h3>
+        {props.facebook? <h3>OR</h3>: null}
+        
         {props.facebook}
     </div>
   )

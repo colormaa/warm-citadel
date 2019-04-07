@@ -4,6 +4,7 @@
   background-color: white;
     padding: 15px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 
     &__auth, &__helper{
@@ -11,6 +12,10 @@
         font-family: 'Montserrat';
         font-weight: 700;
         display: flex;
+        align-items: center;
+        p{
+            margin: 10px; 
+        }
         a,  button{
             display: inline-block;
             
@@ -137,3 +142,51 @@
         display: none;
     }
 }
+
+  .mydropdown{
+      margin: 0 20px;
+      position: relative;
+      display: inline-block;
+      &-content{
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+          a, button{
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+          }
+          
+      }
+      &:hover &-content{
+        display: block;
+    }
+        &:hover .mydropbtn{
+            background-color: var(--red-pink);
+            color: white;
+            padding: 10px 10px;
+        
+        }
+        &-item{
+            width: 100%;
+            text-align: left;
+            padding: 30px 0;
+        }
+        &-item:hover{
+            background-color: var(--red-pink);
+            color: white;
+            font-weight: 600;
+        
+        }
+  }
+  .mydropbtn{
+        color: var(--red-pink);
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+
+  }

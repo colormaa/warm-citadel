@@ -92,7 +92,37 @@ export const updateCustomerAddress =(update, header)=>dispatch=>{
     .then(res=>{
         console.log("update customer addres", res);
         dispatch({type: types.STATUS, 
-        payload: 1})
+        payload:  1})
+    })
+    .catch(err=>{
+        dispatch({type: types.STATUS, 
+            payload: 0})
+    })
+}
+export const statusZero =()=>dispatch=>{
+    dispatch({
+        type: types.STATUS, 
+        payload: 0
+    })
+}
+export const updateCustomerInfo =(update, header)=>dispatch=>{
+    axios.put('https://backendapi.turing.com/customer', update, {headers: header})
+    .then(res=>{
+        console.log("update customer info", res);
+        dispatch({type: types.STATUS, 
+        payload:  1})
+    })
+    .catch(err=>{
+        dispatch({type: types.STATUS, 
+            payload: 0})
+    })
+}
+export const updateCustomerCreditCard =(update, header)=>dispatch=>{
+    axios.put('https://backendapi.turing.com/customers/creditCard', update, {headers: header})
+    .then(res=>{
+        console.log("update customer credit card", res);
+        dispatch({type: types.STATUS, 
+        payload:  1})
     })
     .catch(err=>{
         dispatch({type: types.STATUS, 

@@ -1,0 +1,34 @@
+.profile{
+    width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: white;
+    &__buttons{
+        display: flex;
+        justify-content: space-between;
+        margin:20px 0;
+    }
+    &__table{
+        width: 100%;
+        text-align: left;
+        tr{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            td{
+                padding: 10px;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 800px){
+    .profile{
+        width: 90%;
+        &__buttons{
+            flex-direction: columns;
+            button{
+                margin: 5px;
+            }
+        }
+    }
+}

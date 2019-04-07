@@ -7,7 +7,8 @@ const initialState = {
     path: null, 
     token: null, 
     customer:{}, 
-    facebookToken: null
+    facebookToken: null, 
+    
 }
 export default function(state = initialState, action){
     switch(action.type){

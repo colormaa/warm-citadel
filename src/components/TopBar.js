@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import england from '../img/england.jpg';
 import TextInput from '../common/TextInput';
 import {connect} from 'react-redux';
@@ -46,7 +46,7 @@ class TopBar extends Component {
     }
     loginClicked =()=>{
         this.setState({registerClicked: false, loginClicked: true, error: {}});
-        console.log("LOgin", this.state);
+        ////////console.log("LOgin", this.state);
     }
     registerClicked =()=>{
         this.setState({registerClicked: true, loginClicked: false, error: {}});
@@ -74,7 +74,7 @@ class TopBar extends Component {
         this.setState({login: register})
     }
     onRegisterClick = ()=>{
-        console.log("register modal clicked");
+        ////////console.log("register modal clicked");
         const regcus = {
             name: this.state.register.name, 
             email: this.state.register.email, 
@@ -84,7 +84,7 @@ class TopBar extends Component {
         
     }
      authenticate = (response) => {
-        console.log(response);
+        ////////console.log(response);
         let fbauth = {};
         fbauth.accessToken = response.accessToken;
         fbauth.email = response.email;
@@ -96,7 +96,7 @@ class TopBar extends Component {
         // Api call to server so we can validate the token
       };
     onLoginClick =()=>{
-        console.log("login modal clicked");
+        ////////console.log("login modal clicked");
         const regcus = {
            
             email: this.state.login.email, 
@@ -104,10 +104,16 @@ class TopBar extends Component {
         }
         this.props.loginUser(regcus);
     }
+    orderClick =()=>{
+        this.props.history.push('/orderhome');
+    }
+    profileClick =()=>{
+        this.props.history.push('/profile');
+    }
   render() {
       const errorlogin = this.state.error;
-      console.log(this.props.auth);
-      console.log(errorlogin);
+      ////////console.log(this.props.auth);
+      ////////console.log(errorlogin);
     return (
       <div className = "topbar">
     {this.state.registerClicked ? (
@@ -124,13 +130,9 @@ class TopBar extends Component {
 
             }
 
-            facebook = {
-                <FacebookAuth
-                appId="352854622106208"
-                callback={this.authenticate}
-                component={facebookbutton}
-              />
-           }>
+            
+           >
+           
                         <TextInput placeholder = "* Email" type = "text" 
                             error = {errorlogin.field? (errorlogin.field.includes("email") ? true: false)
                             : false}
@@ -166,13 +168,7 @@ class TopBar extends Component {
                 </div>
                 
             }
-                    facebook = {
-                         <FacebookAuth
-                         appId="352854622106208"
-                         callback={this.authenticate}
-                         component={facebookbutton}
-                       />
-                    }
+                   
                     >
                     <TextInput placeholder = "* Email" type = "text" 
                     error = {errorlogin.field? (errorlogin.field.includes("email") ? true: false)
@@ -188,11 +184,29 @@ class TopBar extends Component {
             </Auth>
             </Modal>
         ): null}
-
-        <h3 className = "topbar__auth">Hi!
+         {/*}
+        <div className="dropdown">
+            <button className="dropbtn">Dropdown</button>
+            <div className="dropdown-content">
+            <Link to="/">Link 1</Link>
+            <Link to="/">Link 2</Link>
+           
+            </div>
+        </div>
+        */}
+        <h3 className = "topbar__auth"><p>Hi!</p>
          
         {this.props.auth.isAuthenticated ? 
-            <button type="button" className="nav-link red-pink" onClick = {this.logoutUser}>LogOut</button> 
+        <div className="mydropdown">
+            <button className="mydropbtn">{this.props.auth.user.name}</button>
+            <div className="mydropdown-content">
+               
+                <button className="mydropdown-item" onClick = {this.profileClick}>My Profile</button>
+                <button type="button" className="mydropdown-item" onClick = {this.logoutUser}>Log Out</button> 
+            </div>
+        </div>
+       
+           
             :
             <div>
                 <button type="button" className="nav-link red-pink" onClick = {this.loginClicked}>Sign in</button>
@@ -227,4 +241,4 @@ const mapStateToProps = state => ({
     auth: state.auth, 
     cart: state.cart
 })
-export default connect(mapStateToProps, {loginUser, facebookLogin, registerUser, logoutUser})(TopBar);
+export default connect(mapStateToProps, {loginUser, facebookLogin, registerUser, logoutUser})(withRouter(TopBar));

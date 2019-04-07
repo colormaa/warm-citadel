@@ -14,6 +14,8 @@ import PrivateRoute from './utils/PrivateRoute';
 import Order from './components/Order';
 import Payment from './components/Payment';
 import OrderHome from './components/OrderHome';
+import Profile from './components/Profile';
+import Footer from './components/Footer';
 if(localStorage.jwtToken){
   setAuthToken(localStorage.jwtToken);
   //decode token and get user info and exp
@@ -54,6 +56,10 @@ class App extends Component {
               <Switch>
                 <PrivateRoute exact path = "/payment" component = {Payment}/>
               </Switch>
+              <Switch>
+                <PrivateRoute exact path = "/profile" component = {Profile}/>
+              </Switch>
+              <Footer />
               </div>
           </BrowserRouter>  
       </Provider>

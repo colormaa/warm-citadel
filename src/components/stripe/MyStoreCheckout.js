@@ -3,6 +3,7 @@ import {CardElement,  PaymentRequestButtonElement, injectStripe} from 'react-str
 import TextInput from '../../common/TextInput';
 import {createCharge} from '../../actions/orderActions';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 class MyStoreCheckout extends Component {
     state = {
         paymentRequest: '', 
@@ -24,12 +25,13 @@ class MyStoreCheckout extends Component {
         
         this.props.stripe.createToken({name: this.state.name})
         .then(res =>{
-            console.log("res  after create token", res);
+            //console.log("res  after create token", res);
             if(res.error){
                 const errorcard = res.error.message;
                 this.setState({errormessage: errorcard});
             }else{
                 this.setState({errormessage: null});
+                /*
                 const charge = {
                     stripeToken: res.token.id, 
                     order_id: this.props.order.orderId, 
@@ -38,11 +40,13 @@ class MyStoreCheckout extends Component {
                     currency: "usd"
 
                 };
-                this.props.createCharge(charge);
+                */
+               this.props.history.push('/');
+               // this.props.createCharge(charge);
             }
         })
         .catch(err=>{
-            console.log("err", err);
+            //console.log("err", err);
         })
     }
     }
@@ -64,4 +68,4 @@ const mapStateToProps = state =>({
     order: state.order, 
     cart: state.cart
 })
-export default connect(mapStateToProps, {createCharge})(injectStripe(MyStoreCheckout)); 
+export default connect(mapStateToProps, {createCharge})(injectStripe(withRouter(MyStoreCheckout))); 

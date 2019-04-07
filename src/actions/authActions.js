@@ -57,6 +57,17 @@ export const setToken =(token)=>dispatch=>{
     payload: token
     });
 };
+export const getCustomer =(token)=>dispatch=>{
+    console.log("get customer ", token);
+    axios.get('https://backendapi.turing.com/customer', {headers: {'user-key': token}})
+    .then(res=>{
+        console.log(" res success", res);
+        dispatch(setCurrentUser(res.data));
+    })
+    .catch(err=>{
+        dispatch(setCurrentUser({}));
+    })
+}
 
 export const loginUser =(regcus)=>dispatch=>{
     //console.log("logiNUser", regcus);
