@@ -13,9 +13,9 @@ class Products extends Component {
       this.props.setProductNull();
     }
   render() {
-    console.log(this.props);
+    //console.log(this.props);
     const {rows, count} = this.props.products;
-    console.log(rows);
+    //console.log(rows);
     let productitem;
     if(rows){
       if(rows.length>0){

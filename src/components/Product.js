@@ -14,21 +14,21 @@ class Product extends React.Component{
   }
   
   onSelectSize =(size)=>{
-    console.log("on SElect size");
-    console.log(size.target.value);
+    ////console.log("on SElect size");
+    ////console.log(size.target.value);
   }
   onClickProduct =(id)=>{
     this.props.getProductAttr(id);
-    console.log("On click product");
+    ////console.log("On click product");
     this.setState({selected: true});
-    console.log("this. ", this.state);
+    ////console.log("this. ", this.state);
     this.props.setProduct(this.props.row.product_id);
   }
   closeModal=()=>{
-    console.log("eee close Modal");
+    ////console.log("eee close Modal");
 //    this.setState({selected: !this.state.selected});
     this.setState((prevState) => ({color: 100 }));
-    console.log("this. ", this.state);
+    ////console.log("this. ", this.state);
   }
 
   render(){

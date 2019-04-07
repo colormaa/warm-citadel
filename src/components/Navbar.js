@@ -24,7 +24,7 @@ class Navbar extends Component {
     }
     onSubmit=(e)=>{
         e.preventDefault();
-        console.log("search clicked");
+        //console.log("search clicked");
         /*
         if(this.state.search === ''){
             this.props.getProducts(1, this.props.product.limit);
@@ -42,7 +42,7 @@ class Navbar extends Component {
         this.setState({[e.target.name]: e.target.value});
     }
     notificationClicked =()=>{
-        console.log("notification clicked");
+        //console.log("notification clicked");
         this.props.history.push('/cart');
     }
   render() {

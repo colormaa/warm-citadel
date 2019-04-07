@@ -15,15 +15,15 @@ class Categories extends Component {
     }
     departmentOnClick=(depid)=>{
       this.setState({department: depid});
-      console.log(this.state.department);
+      //console.log(this.state.department);
       this.props.getCategoriesOfDepartment(depid);
       this.props.getProducts(null, depid, 0, 1, this.props.product.limit);
       
     }
     categoryOnClick=(depid)=>{
       this.setState({category:  depid});
-      //console.log(this.state.department);
-      console.log("depid category", this.props.product.department, depid);
+      ////console.log(this.state.department);
+      //console.log("depid category", this.props.product.department, depid);
       this.props.getProducts(null, this.props.product.department, depid, 1, this.props.product.limit);
     }
   render() {
@@ -32,12 +32,12 @@ class Categories extends Component {
     if(!this.props.product.loading){
       categories = this.props.product.categories;
     }
-    console.log("this.props.product", this.props.product);
-   // console.log(this.props.product, categories);
+    //console.log("this.props.product", this.props.product);
+   // //console.log(this.props.product, categories);
     let coloritems, sizeitems, departmentitems, categoryitems ;
-   // console.log("colors ", colors, sizes);
+   // //console.log("colors ", colors, sizes);
     
-   // console.log("departments ", departments);
+   // //console.log("departments ", departments);
     if(departments){
         departmentitems = departments.map(dep=>(
           <button  key = {dep.department_id} onClick = {()=>this.departmentOnClick(dep.department_id)}>
@@ -45,9 +45,9 @@ class Categories extends Component {
           </button>
         ))
     }
-   // console.log("categories ", categories);
+   // //console.log("categories ", categories);
     if(categories){
-   //   console.log("Catroeis if ", categories.rows);
+   //   //console.log("Catroeis if ", categories.rows);
       categories = categories;
       categoryitems = categories.map(cat =>(
         <button key = {cat.category_id} onClick = {()=>this.categoryOnClick(cat.category_id)} > {cat.name}   </button>

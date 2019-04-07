@@ -6,7 +6,7 @@ const initialState = {
     total: 0
 }
 export default function(state = initialState, action){
-    console.log("cart REducer", action.payload);
+    //console.log("cart REducer", action.payload);
     switch(action.type){
          
         case types.CREATE_CART: 
@@ -33,7 +33,7 @@ export default function(state = initialState, action){
             }
         }
         case types.CART_REMOVE_PRODUCT: {
-            console.log("CArt rmeove product ___________", action);
+            //console.log("CArt rmeove product ___________", action);
             var foundIndex = state.products.findIndex(x => x.product.product_id == action.payload.product.product.product_id 
                     && x.size.attribute_value_id == action.payload.product.size.attribute_value_id &&
                         x.color.attribute_value_id == action.payload.product.color.attribute_value_id);

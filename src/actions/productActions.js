@@ -9,14 +9,14 @@ export const getProducts =(start, limit)=>dispatch=>{
     dispatch(setSearch(null));
     axios.get(`https://backendapi.turing.com/products?page=${start}&limit=${limit}`)
     .then(res=>{
-        console.log("res", res);
+        //console.log("res", res);
         dispatch({
             type: types.GET_PRODUCTS,
             payload: res.data
         });
     })
     .catch(err=>{
-        console.log("err", err);
+        //console.log("err", err);
         dispatch({
             type: types.GET_PRODUCTS,
             payload: []
@@ -32,7 +32,7 @@ export const setSaveProduct =(sproduct)=>dispatch=>{
 }
 export const getCategoriesOfDepartment =(depid)=>dispatch=>{
 //    https://backendapi.turing.com/categories/inDepartment/1
-console.log("GEt categories of department");
+//console.log("GEt categories of department");
 
         dispatch(setDepartment(depid));
         axios.get(`https://backendapi.turing.com/categories/inDepartment/${depid}`)
@@ -50,7 +50,7 @@ console.log("GEt categories of department");
         })
 }
 export const getProducts =(search, departmentid, categoryid, page, limit)=>dispatch=>{
-    console.log("get products =================", search, departmentid, categoryid, page, limit);
+    //console.log("get products =================", search, departmentid, categoryid, page, limit);
     dispatch(setProductsLoading);
         dispatch(setSearch(search));
         dispatch(setInitial(page));
@@ -72,11 +72,11 @@ export const getProducts =(search, departmentid, categoryid, page, limit)=>dispa
             });
         })
     }else if(categoryid>0){
-        console.log("Category =================");
+        //console.log("Category =================");
         axios.get(`https://backendapi.turing.com/products/inCategory/${categoryid}?page=${page}&limit=${limit}`)
         
         .then(res=>{
-            console.log("categoryid", res);
+            //console.log("categoryid", res);
             dispatch({
                 type: types.GET_PRODUCTS,
                 payload: res.data
@@ -91,34 +91,34 @@ export const getProducts =(search, departmentid, categoryid, page, limit)=>dispa
     }else if(departmentid>0){
         axios.get(`https://backendapi.turing.com/products/inDepartment/${departmentid}?page=${page}&limit=${limit}`)
         .then(res=>{
-            console.log("res department ", res);
+            //console.log("res department ", res);
             dispatch({
                 type: types.GET_PRODUCTS,
                 payload: res.data
             });
         })
         .catch(err=>{
-            console.log("err department", err);
+            //console.log("err department", err);
             dispatch({
                 type: types.GET_PRODUCTS,
                 payload: []
             })
         })
     }else {
-        console.log("Else");
+        //console.log("Else");
         //https://backendapi.turing.com/products?page=1&limit=20
        
         axios.get(`https://backendapi.turing.com/products?page=${page}&limit=${limit}`)
         .then(res=>{
-            console.log("res else ==============", res);
+            //console.log("res else ==============", res);
             dispatch({
                 type: types.GET_PRODUCTS,
                 payload: res.data
             });
         })
         .catch(err=>{
-            console.log("err", err);
-            console.log("error else ==============", err);
+            //console.log("err", err);
+            //console.log("error else ==============", err);
             dispatch({
                 type: types.GET_PRODUCTS,
                 payload: []
@@ -153,7 +153,7 @@ export const getCategories = ()=>dispatch=>{
         });
     })
     .catch(err=>{
-        console.log("err ", err);
+        //console.log("err ", err);
         dispatch({
             type: types.GET_CATEGORIES,
             payload: null
@@ -196,7 +196,7 @@ export const setCategory =(search)=>{
     }
 }
 export const getColors =()=>dispatch=>{
-    console.log("get colors");
+    //console.log("get colors");
     dispatch(setProductsLoading);
     axios.get('https://backendapi.turing.com/attributes/values/2')
     .then(res=>{
@@ -246,7 +246,7 @@ export const getProductAttr =(id)=>dispatch=>{
     })
 }*/
 export const getSizes =()=>dispatch=>{
-    console.log("get colors");
+    //console.log("get colors");
     dispatch(setProductsLoading);
     axios.get('https://backendapi.turing.com/attributes/values/1')
     .then(res=>{
@@ -265,7 +265,7 @@ export const getSizes =()=>dispatch=>{
 export const getProductAttr=(id)=>dispatch=>{
     axios.get(`https://backendapi.turing.com/attributes/inProduct/${id}`)
     .then(res=>{
-        console.log("GETProductAttr");
+        //console.log("GETProductAttr");
         dispatch({
             type: types.GET_PRODUCT_ATTR, 
             payload: res.data

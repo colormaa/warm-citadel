@@ -12,7 +12,7 @@ class Cart extends Component {
     let totalPrice = parseFloat(this.props.cart.total) - parseFloat(product.discounted_price == 0 ? product.price : product.discounted_price);
  
     pro.quantity = pro.quantity-1;
-    console.log("decrease quantity ", totalPrice);
+    //console.log("decrease quantity ", totalPrice);
     this.props.addQuantityProduct(pro, totalPrice);
   }
   increaseQuantity =(pro)=>{
@@ -21,12 +21,12 @@ class Cart extends Component {
  
  
     pro.quantity = pro.quantity+1;
-    console.log("increase quantity ", totalPrice);
+    //console.log("increase quantity ", totalPrice);
     this.props.addQuantityProduct(pro, totalPrice);
     
   }
   removeItem =(pro)=>{
-    console.log("Pro remove item ", pro);
+    //console.log("Pro remove item ", pro);
     const product = pro.product;
     let totalPrice = parseFloat(this.props.cart.total) - parseFloat(parseFloat(product.discounted_price == 0 ? product.price : product.discounted_price)*pro.quantity);
     
@@ -42,7 +42,7 @@ class Cart extends Component {
     let productlist;
     let productcontainer;
     const products = this.props.cart.products;
-    console.log("PRoduct list", products.length);
+    //console.log("PRoduct list", products.length);
     let totalPrice=0;
     if(products.length >=1 ){
        

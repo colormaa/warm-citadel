@@ -11,7 +11,7 @@ const PrivateRoute =(props)=>{
     }else{
        
         prtemp = <Redirect to = "/"/>;
-        console.log("provate route ", props);
+        //console.log("provate route ", props);
     
         props.setPath(props.path);
         props.showLogin();
@@ -26,3 +26,7 @@ const mapStateToProps = state =>({
     auth: state.auth
 })
 export default connect(mapStateToProps, {showLogin, setPath} )(PrivateRoute);
+/**
+ * 
+ * git remote add origin https://github.com/Crustalmaa/react-challemge.git
+git push -u origin master */

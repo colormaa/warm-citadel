@@ -25,13 +25,13 @@ class MainPart extends React.Component{
     paginationClick =(e)=>{
         this.setState({initial: e.target.value});
         this.props.setInitial(e.target.value);
-      //  console.log("pagination ",e.target.value )
+      //  //console.log("pagination ",e.target.value )
         this.props.getProducts(this.props.product.search, this.props.product.department, this.props.product.category, e.target.value, this.state.limit);
         
     }
     prevClick =()=>{
        const v = this.state.initial -1;
-      //  console.log("v", this.state.initial);
+      //  //console.log("v", this.state.initial);
         //    this.props.getProducts(v, this.state.limit);
         this.props.getProducts(this.props.product.search, this.props.product.department, this.props.product.category, v, this.state.limit);
        
@@ -41,14 +41,14 @@ class MainPart extends React.Component{
     }
     nextClick =()=>{
         const v = this.state.initial + 1;
-        console.log("next",v);
+        //console.log("next",v);
         this.setState({initial: v});
-            console.log("next search null", this.state.initial);
+            //console.log("next search null", this.state.initial);
             this.props.getProducts(this.props.product.search, this.props.product.department, this.props.product.category, v, this.state.limit);
     }
     render(){
-      //  console.log("MainPart product");
-      //  console.log(this.props.product.initial);
+      //  //console.log("MainPart product");
+      //  //console.log(this.props.product.initial);
         const count = this.props.product.products.count;
         let products; 
         if(this.props.product.loading){
@@ -61,12 +61,12 @@ class MainPart extends React.Component{
         let pagination =[];
         for (var i = 1; i < Math.ceil(count/this.state.limit)+1; i++)
         {
-            console.log("pagination ",Math.ceil(count/this.state.limit)+1 )
+            //console.log("pagination ",Math.ceil(count/this.state.limit)+1 )
             pagination.push(<li className="mypagination__page-item"  key = {i} >
                 <button  value = {i} onClick = {(e)=>this.paginationClick(e)} className={classnames("mypagination__page-link", i=== this.props.product.initial ? 'mypagination__page-link__active' : null )}
                 >{i}</button></li>);
         }
-        console.log("pagination ================", pagination);
+        //console.log("pagination ================", pagination);
         return (
             <div className = "mainpart">
             {/* Pagination 1, 3, 4  */}

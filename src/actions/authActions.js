@@ -4,11 +4,11 @@ import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 
 export const registerUser =(regcus)=>dispatch=>{
-//console.log("registerUser", regcus)
+////console.log("registerUser", regcus)
     
     axios.post('https://backendapi.turing.com/customers', regcus)
     .then(res=>{
-        //console.log(res);
+        ////console.log(res);
         const token = res.data.accessToken;
         const customer = jwt_decode(token);
         localStorage.setItem('jwtToken', token);
@@ -21,8 +21,8 @@ export const registerUser =(regcus)=>dispatch=>{
         })
     })
     .catch(err=>{
-        //console.log(err.response.status);
-        console.log(err.response.data.error);
+        ////console.log(err.response.status);
+        //console.log(err.response.data.error);
         dispatch({
             type: types.GET_ERRORS, 
             payload: err.response.data.error
@@ -34,7 +34,7 @@ export const facebookLogin=(fb)=>dispatch=>{
     dispatch({type: types.FACEBOOK_TOKEN, payload: fb.accessToken});
     axios.post('https://backendapi.turing.com/customers/facebook', {access_token: fb.accessToken})
     .then(res=>{
-        console.log("facebook login success", res);
+        //console.log("facebook login success", res);
         const token = res.data.accessToken;
         const customer = jwt_decode(token);
         localStorage.setItem('jwtToken', token);
@@ -47,9 +47,9 @@ export const facebookLogin=(fb)=>dispatch=>{
         })
     })
     .catch(err=>{
-        console.log("facebook login ", err);
-        console.log("facebook login ", err.response.data);
-        console.log("facebook login ", err.response);
+        //console.log("facebook login ", err);
+        //console.log("facebook login ", err.response.data);
+        //console.log("facebook login ", err.response);
     })
 }
 export const setToken =(token)=>dispatch=>{
@@ -58,10 +58,10 @@ export const setToken =(token)=>dispatch=>{
     });
 };
 export const getCustomer =(token)=>dispatch=>{
-    console.log("get customer ", token);
+    //console.log("get customer ", token);
     axios.get('https://backendapi.turing.com/customer', {headers: {'user-key': token}})
     .then(res=>{
-        console.log(" res success", res);
+        //console.log(" res success", res);
         dispatch(setCurrentUser(res.data));
     })
     .catch(err=>{
@@ -70,10 +70,10 @@ export const getCustomer =(token)=>dispatch=>{
 }
 
 export const loginUser =(regcus)=>dispatch=>{
-    //console.log("logiNUser", regcus);
+    ////console.log("logiNUser", regcus);
     axios.post('https://backendapi.turing.com/customers/login', regcus)
     .then(res=>{
-       // console.log(res);
+       // //console.log(res);
         const token = res.data.accessToken;
         const customer = jwt_decode(token);
         localStorage.setItem('jwtToken', token);
@@ -86,7 +86,7 @@ export const loginUser =(regcus)=>dispatch=>{
         
     })
     .catch(err=>{
-        console.log(err.response.data.error);
+        //console.log(err.response.data.error);
         dispatch({
             type: types.GET_ERRORS, 
             payload: err.response.data.error

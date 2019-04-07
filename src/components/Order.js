@@ -33,16 +33,16 @@ class Order extends Component {
         }
     }
     onChange =(e)=>{
-            console.log("on select change", e.target.name, e.target.value);
+            //console.log("on select change", e.target.name, e.target.value);
             this.setState({[e.target.name]: e.target.value});
     }
     onSelectChange =(e)=>{
         this.setState({[e.target.name]: e.target.value});
-            console.log("on select change", e.target.name, e.target.value);
+            //console.log("on select change", e.target.name, e.target.value);
     }
     onSubmit=(e)=>{
         e.preventDefault();
-      console.log("On Submit order");
+      //console.log("On Submit order");
       
         if(this.props.cart.products.length === 0){
             
@@ -76,10 +76,10 @@ class Order extends Component {
             }
             this.setState({errors: errors});
             if(!(errors.address1|| errors.address2 || errors.city || errors.region || errors.postalcode || errors.country || errors.tax || errors.shippingregion)){
-                console.log("Order No error" )
+                //console.log("Order No error" )
                
                 this.props.cart.products.forEach(pro =>
-                    {   console.log("foreach ", pro);
+                    {   //console.log("foreach ", pro);
                         const payload  = {
                             cart_id: this.props.cart.cartId, 
                             product_id: pro.product.product_id, 
@@ -121,7 +121,7 @@ class Order extends Component {
                     this.props.updateCustomerAddress(updateaddress, {'user-key': this.props.auth.token});
 
             }else{
-                console.log("errors ", errors);
+                //console.log("errors ", errors);
             }
         }
 

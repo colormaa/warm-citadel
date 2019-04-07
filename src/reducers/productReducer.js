@@ -16,7 +16,7 @@ const initialState = {
     department: 0
 }
 export default function (state = initialState, action){
-    console.log("Product reducer", action);
+    //console.log("Product reducer", action);
     switch(action.type){
         case types.PRODUCTS_LOADING: 
             return{

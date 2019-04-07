@@ -16,11 +16,11 @@ class ProductDetail extends React.Component {
             this.props.getProductAttr(this.props.product.product.product_id);
     }
     oncheck =(val)=>{
-        console.log("ON check", val);
+        //console.log("ON check", val);
         this.setState({color: val});
       }
     sizeSelected =(e)=>{
-        console.log(e.target.value);
+        //console.log(e.target.value);
         
         let vv = "aa";
         vv = this.props.product.productattr.find(el =>
@@ -33,7 +33,7 @@ class ProductDetail extends React.Component {
         }else{
             this.setState({size: vv});
         }
-        console.log("seize selected ", vv);
+        //console.log("seize selected ", vv);
     }
     addToCart =()=>{
         let errors = {};
@@ -53,23 +53,23 @@ class ProductDetail extends React.Component {
             errors.color = "Please select the color of the product";
         }
         if(!errors.color&& ! errors.size && !errors.quantity){
-            console.log("OK added to cart");
+            //console.log("OK added to cart");
             this.setState({errors: errors});
             if(!this.props.auth.isAuthenticated){
-                console.log("not authenticaed");
+                //console.log("not authenticaed");
                 this.props.setSaveProduct(this.props.product.product);
                 
                 this.props.closeModal();
                 this.props.showLogin();
                 
             }else{
-                console.log("Autenticaed", this.props.cart.products);
+                //console.log("Autenticaed", this.props.cart.products);
                 this.props.createCart();
                 let vvv = this.props.cart.products.find(ob =>ob.product.product_id == this.props.product.product.product_id
                         && ob.size.attribute_value_id == this.state.size.attribute_value_id 
                         && ob.color.attribute_value_id == this.state.color.attribute_value_id
                     );
-                console.log(vvv);
+                //console.log(vvv);
                 if(vvv){
 
                     let totalPrice = 0;
@@ -108,16 +108,16 @@ class ProductDetail extends React.Component {
                 
                 this.props.closeModal();
             }
-            console.log(this.state);
+            //console.log(this.state);
             
         }else{
-            console.log("show the errors", errors);
-            console.log(this.state);
+            //console.log("show the errors", errors);
+            //console.log(this.state);
             this.setState({errors: errors});
         } 
     }
     quantityClicked =(num)=>{
-        console.log("Quantity clicked");
+        //console.log("Quantity clicked");
         if(this.state.quantity === 1 && num=== -1){
             return;
         } 
@@ -125,7 +125,7 @@ class ProductDetail extends React.Component {
         this.setState({quantity: v});
     }
     render(){
-    console.log("product detail", this.props);
+    //console.log("product detail", this.props);
     let proattr = this.props.product.productattr;
 
     let color=[];
@@ -153,7 +153,7 @@ class ProductDetail extends React.Component {
             </li>
       )): 
     null);
-        console.log(size);
+        //console.log(size);
     let sizeOptions = (size? 
       size.map(siz=>(
           <option key = {siz.attribute_value_id} value={siz.attribute_value_id}>{siz.attribute_value}</option>
