@@ -62,9 +62,7 @@ export const addProductToCart =(payload, header)=>dispatch=>{
     }
     )
     .then(res=>{
-        //console.log(
-            "add product to cart", res.data
-        )
+        //console.log(    "add product to cart", res.data)
     })
     .catch(err=>{
         //console.log("add product to car terror");
