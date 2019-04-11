@@ -1,9 +1,11 @@
 import React from 'react'
 import classnames from 'classnames';
+import axios from 'axios';
 import {connect} from 'react-redux';
 import {setProduct, getProductAttr, setSaveProduct} from '../actions/productActions'
 import {showLogin} from '../actions/authActions';
-import {createCart, addProduct, addQuantityProduct} from '../actions/cartActions';
+import {createCart, addProduct} from '../actions/cartActions';
+import Axios from 'axios';
 class ProductDetail extends React.Component {
     state = {
         quantity: 1, 
@@ -12,8 +14,10 @@ class ProductDetail extends React.Component {
         errors: {}
     }
     componentDidMount(){
-            this.props.setProduct(this.props.product.product.product_id);
-            this.props.getProductAttr(this.props.product.product.product_id);
+            //this.props.setProduct(this.props.product.product.product_id);
+            if(!this.props.cart.cartId){
+            this.props.createCart();
+            }
     }
     oncheck =(val)=>{
         //console.log("ON check", val);
@@ -24,6 +28,7 @@ class ProductDetail extends React.Component {
         
         let vv = "aa";
         vv = this.props.product.productattr.find(el =>
+            //console.log("el ",e.target.value,el.attribute_value_id,el.attribute_value_id == e.target.value)
            el.attribute_value_id == e.target.value
             
         )
@@ -33,9 +38,12 @@ class ProductDetail extends React.Component {
         }else{
             this.setState({size: vv});
         }
-        //console.log("seize selected ", vv);
+        console.log("seize selected ",e.target.value);
     }
     addToCart =()=>{
+        console.log(this.state.quantity);
+        console.log(this.state.size);
+        console.log(this.state.color);
         let errors = {};
         if(this.state.quantity<1){
             errors.quantity = "Quantity must be greater than 1.";
@@ -57,19 +65,36 @@ class ProductDetail extends React.Component {
             this.setState({errors: errors});
             if(!this.props.auth.isAuthenticated){
                 //console.log("not authenticaed");
-                this.props.setSaveProduct(this.props.product.product);
+               // this.props.setSaveProduct(this.props.product.product);
                 
                 this.props.closeModal();
                 this.props.showLogin();
                 
             }else{
-                //console.log("Autenticaed", this.props.cart.products);
-                this.props.createCart();
+                console.log("Autenticaed", this.props.cart.products);
+                /*
+                if(!this.props.cart.cartId){
+                    this.props.createCart();
+                }*/
+                if(this.props.cart.cartId){
+                    for(var i = 0; i<this.state.quantity; i++){
+                        this.props.addProduct({
+                            product_id: this.props.product.product.product_id, 
+                            cart_id: this.props.cart.cartId, 
+                            attributes: this.state.size.attribute_value+','+this.state.color.attribute_value
+                        });
+                    }
+                }
+                
+                
+
+                {/*
                 let vvv = this.props.cart.products.find(ob =>ob.product.product_id == this.props.product.product.product_id
                         && ob.size.attribute_value_id == this.state.size.attribute_value_id 
                         && ob.color.attribute_value_id == this.state.color.attribute_value_id
                     );
                 //console.log(vvv);
+                
                 if(vvv){
 
                     let totalPrice = 0;
@@ -105,6 +130,7 @@ class ProductDetail extends React.Component {
                         color: this.state.color
                     }, totalPrice);
                 }
+            */}
                 
                 this.props.closeModal();
             }
@@ -142,8 +168,6 @@ class ProductDetail extends React.Component {
     }
     let colorOptions = (color? 
       color.map(col=>(
-         
-         
             <li key = {col.attribute_value_id}>
               <input type="radio"  className = "color__form__radio" id = {col.attribute_value_id} name="color" value={col.attribute_value} 
               onChange = {()=>this.oncheck(col)}/>
@@ -168,7 +192,9 @@ class ProductDetail extends React.Component {
         </div>
         <div className = "productdetail__second">
             <h3 className="productdetail__title">{product.name}</h3>
+
             <h3 className="productdetail__price">${product.discounted_price == 0  ? product.price: product.discounted_price}</h3>
+            <p className="productdetail__description">{product.description}</p>
             <div className="productdetail__color">
                 <h4 className="productdetail__subtitle">
                     Color
@@ -210,4 +236,4 @@ const mapStateToProps =(state)=>({
     auth: state.auth, 
     cart: state.cart
 })
-export default connect(mapStateToProps, {setProduct, getProductAttr, showLogin, setSaveProduct, createCart, addProduct, addQuantityProduct})(ProductDetail);
+export default connect(mapStateToProps, {setProduct, getProductAttr, showLogin, setSaveProduct, createCart, addProduct})(ProductDetail);

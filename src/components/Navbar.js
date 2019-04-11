@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import {Link, withRouter} from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getProducts, getDepartments} from '../actions/productActions';
-import classnames from 'classnames';
+import {getTotalAmount} from '../actions/cartActions';
+//import classnames from 'classnames';
 class Navbar extends Component {
     state = {
         toggle: false, 
@@ -15,6 +16,9 @@ class Navbar extends Component {
         if(nextProps.product){
             this.setState({search: nextProps.product.search});
         }
+        if(nextProps.cart.items !== this.props.cart.items){
+            this.props.getTotalAmount(this.props.cart.cartId);
+          }
     }
     departmentClick =(id, closetag)=>{
         if(closetag>0){
@@ -46,7 +50,7 @@ class Navbar extends Component {
         this.props.history.push('/cart');
     }
   render() {
-      let departmentnormal;
+/*      let departmentnormal;
       if(this.props.product.departments){
           departmentnormal = this.props.product.departments.map(dep =>(
             <li key = {dep.department_id}>
@@ -54,6 +58,7 @@ class Navbar extends Component {
             </li>
           ))
       }
+      
       let departmenttoggle;
       if(this.props.product.departments){
           departmenttoggle = this.props.product.departments.map(dep =>(
@@ -63,6 +68,7 @@ class Navbar extends Component {
             </li>
           ))
       }
+      */
     return (
       <div className = "navbar">
             <h4 className="navbar__logo">SHOPMATE</h4>
@@ -101,10 +107,11 @@ class Navbar extends Component {
 
 
             </form>
-            <div className="navbar__notification" onClick = {this.notificationClicked}>
+            <Link to = "/cart" className="navbar__notification" //onClick = {this.notificationClicked}
+            >
             <i className="fas fa-shopping-bag"></i>
-                <p>{this.props.cart.products.length}</p>
-            </div>
+                <p>{this.props.cart.items.length}</p>
+            </Link>
       </div>
     )
   }
@@ -115,4 +122,4 @@ const mapStateToProps = (state)=>({
     cart: state.cart
     
 })
-export default connect(mapStateToProps, {getProducts, getDepartments})(withRouter(Navbar));
+export default connect(mapStateToProps, {getProducts, getTotalAmount, getDepartments})(withRouter(Navbar));

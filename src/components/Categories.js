@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import classnames from 'classnames';
+//import classnames from 'classnames';
 import React, { Component } from 'react'
 import {getColors, getSizes, getDepartments, getCategories, getProducts, getCategoriesOfDepartment} from '../actions/productActions';
 class Categories extends Component {
@@ -27,7 +27,7 @@ class Categories extends Component {
       this.props.getProducts(null, this.props.product.department, depid, 1, this.props.product.limit);
     }
   render() {
-    const {colors, sizes, departments} = this.props.product;
+    const {departments} = this.props.product;
     let categories = [];
     if(!this.props.product.loading){
       categories = this.props.product.categories;

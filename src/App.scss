@@ -1,6 +1,4 @@
-.App {
-  
-}
+
 :root {
   --sunflower-yellow: #ffd201;
   --transparent: rgba(255, 255, 255, 0);
@@ -22,6 +20,31 @@
 body{
   background-color: var(--white);
 }
+.app {
+  &__container{
+    width: 100%;
+    min-height: 65vh;
+    
+  }
+}
+
+  input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+
+  -webkit-text-fill-color: var(--black);
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+
 @import 'sass-style/home';
 @import 'sass-style/landing';
 @import 'sass-style/modal';
@@ -42,3 +65,5 @@ body{
 @import 'sass-style/payment';
 @import 'sass-style/profile';
 @import 'sass-style/footer';
+@import 'sass-style/unauthorized';
+@import 'sass-style/orderhome';

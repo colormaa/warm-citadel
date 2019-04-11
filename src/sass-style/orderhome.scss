@@ -1,0 +1,12 @@
+.orderhome{
+    width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr;
+    padding: 30px;
+    &__title{
+
+    }
+}

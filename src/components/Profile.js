@@ -33,7 +33,7 @@ import classnames from 'classnames';
          this.props.getShippingRegion();
      }
      componentWillReceiveProps(nextProps){
-         if(nextProps.order.status ==1){
+         if(nextProps.order.status ===1){
             this.props.getCustomer(this.props.auth.token);
             this.props.statusZero();
          }

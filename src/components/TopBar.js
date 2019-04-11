@@ -7,7 +7,7 @@ import Modal from './Modal';
 import Auth from './Auth';
 import FacebookAuth from 'react-facebook-auth';
 import facebookbutton from '../common/facebookbutton';
-
+import {getTotalAmount } from '../actions/cartActions';
 import Button from '../common/Button';
 import {loginUser, registerUser, logoutUser, facebookLogin} from '../actions/authActions';
 
@@ -28,6 +28,9 @@ class TopBar extends Component {
         },
         error: {}
     }
+    componentWillMount(){
+        this.props.getTotalAmount(this.props.cart.cartId);
+    }
     componentWillReceiveProps(nextProps){
         if(nextProps.error){
             this.setState({error: nextProps.error});
@@ -39,6 +42,9 @@ class TopBar extends Component {
             if(nextProps.auth.loginshow){
                 this.setState({loginClicked: true});
             }
+        }
+        if(nextProps.cart.items !== this.props.cart.items){
+          this.props.getTotalAmount(this.props.cart.cartId);
         }
     }
     onClick =()=>{
@@ -129,6 +135,11 @@ class TopBar extends Component {
               </div>   
 
             }
+            facebook = {<FacebookAuth
+                appId="352854622106208"
+                callback={this.authenticate}
+                component={facebookbutton}
+              />}
 
             
            >
@@ -200,7 +211,7 @@ class TopBar extends Component {
         <div className="mydropdown">
             <button className="mydropbtn">{this.props.auth.user.name}</button>
             <div className="mydropdown-content">
-               
+            <button className="mydropdown-item" onClick = {this.orderClick}>My Orders</button>
                 <button className="mydropdown-item" onClick = {this.profileClick}>My Profile</button>
                 <button type="button" className="mydropdown-item" onClick = {this.logoutUser}>Log Out</button> 
             </div>
@@ -217,14 +228,15 @@ class TopBar extends Component {
         
         </h3>
         <h3 className = "topbar__helper">
-            <Link to ="/" className = "nav-link black">Daily Deals</Link>
+            <Link to ="/" className = "nav-link black">Home</Link>
            
             <Link to ="/" className = "nav-link black">Help & Contact</Link>
         </h3>
+        {/*
         <div className="topbar__lang">
             <img src={england} width = "24px" height = "12px" alt=""/>
             <Link to = "/" className = "nav-link black"> L GBP</Link>
-        </div>
+        </div>*/}
         <div className="topbar__shop">
         <i className="fas fa-shopping-bag"></i>
                 
@@ -241,4 +253,4 @@ const mapStateToProps = state => ({
     auth: state.auth, 
     cart: state.cart
 })
-export default connect(mapStateToProps, {loginUser, facebookLogin, registerUser, logoutUser})(withRouter(TopBar));
+export default connect(mapStateToProps, {loginUser, getTotalAmount,facebookLogin, registerUser, logoutUser})(withRouter(TopBar));

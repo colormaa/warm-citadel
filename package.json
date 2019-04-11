@@ -5,14 +5,19 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
+    "date-and-time": "^0.6.3",
     "jwt-decode": "^2.2.0",
+    "moment": "^2.24.0",
     "node-sass": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-facebook-auth": "^1.4.0",
+    "react-moment": "^0.8.4",
+    "react-private-route": "^1.1.2",
     "react-redux": "^6.0.1",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
+    "react-router-private-route": "0.0.3",
     "react-scripts": "2.1.8",
     "react-stripe-elements": "^2.0.3",
     "redux": "^4.0.1",
@@ -28,6 +33,13 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "env": {
+    "production": {
+      "plugins": [
+        "transform-remove-console"
+      ]
+    }
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -36,5 +48,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "babel-plugin-transform-remove-console": "^6.9.4"
+  }
 }

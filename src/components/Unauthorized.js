@@ -15,9 +15,10 @@ class Unauthorized  extends React.Component{
   return (
     <div className = "unauthorized" style ={{color: 'white'}}>
         <div className="unauthorized__container">
-          <h3>PAGE NOT FOUND</h3>
+          <h3>UNAUTHORIZED</h3>
           <div>
           <button className = "homebtn" onClick = {this.onClickHome}>Back To Home Page</button>
+          <button className = "loginbtn" onClick = {this.onClickLogin}>Click here to login</button>
           </div>
           
         </div>

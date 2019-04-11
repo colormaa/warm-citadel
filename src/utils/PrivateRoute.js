@@ -29,4 +29,17 @@ export default connect(mapStateToProps, {showLogin, setPath} )(PrivateRoute);
 /**
  * 
  * git remote add origin https://github.com/Crustalmaa/react-challemge.git
-git push -u origin master */
+git push -u origin master 
+
+https://medium.freecodecamp.org/how-to-set-up-simple-image-upload-with-node-and-aws-s3-84e609248792
+
+https://dev.to/smithmanny/deploy-your-react-app-to-heroku-2b6f
+https://www.youtube.com/watch?v=-edmQKcOW8s
+*/
+/*
+add words to flash card 
+https://jisho.org/api/v1/search/words?keyword=jisho    api for serach word
+
+
+
+*/

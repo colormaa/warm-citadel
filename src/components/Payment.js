@@ -14,7 +14,7 @@ class Payment extends Component {
       <div className = "payment">
       
             <h3 className = "payment__title">Proceed payment</h3>
-            <StripeProvider  apiKey = "pk_test_eGMBQq0csYXhTuxRL67hLzuF">
+            <StripeProvider  apiKey = "pk_test_NcwpaplBCuTL6I0THD44heRe">
                 <Elements>
                 <MyStoreCheckout />
                 </Elements>

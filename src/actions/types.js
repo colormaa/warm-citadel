@@ -23,6 +23,8 @@ export const ADD_PRODUCT = "ADD_PRODUCT";
 export const ADD_QUANTITY_PRODUCT = "ADD_QUANTITY_PRODUCT";
 export const SUBTRACT_QUANTITY_PRODUCT = "SUBTRACT_QUANTITY_PRODUCT";
 export const CART_REMOVE_PRODUCT = "CART_REMOVE_PRODUCT";
+export const GET_ITEMS_IN_CART ="GET_ITEMS_IN_CART";
+export const CART_STATUS ="CART_STATUS";
 
  
 export const SET_PATH = "SET_PATH";
@@ -36,3 +38,6 @@ export const GET_ORDERS = "GET_ORDERS";
 export const HIDE_LOGIN = "HIDE_LOGIN";
 export const STATUS = "STATUS";
 export const FACEBOOK_TOKEN = "FACEBOOK_TOKEN";
+export const GET__ORDER__DETAIL = "GET__ORDER__DETAIL";
+export const GET_SHIPPING= "GET_SHIPPING";
+export const CART_TOTAL = "CART_TOTAL";

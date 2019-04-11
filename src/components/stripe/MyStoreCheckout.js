@@ -31,18 +31,19 @@ class MyStoreCheckout extends Component {
                 this.setState({errormessage: errorcard});
             }else{
                 this.setState({errormessage: null});
-                /*
+                
                 const charge = {
                     stripeToken: res.token.id, 
                     order_id: this.props.order.orderId, 
                     description: "Order", 
-                    amount: Math.round(this.props.cart.total *(this.props.order.tax_id == 1? 1.085 : 1)), 
+                    amount: Math.round(this.props.cart.total), 
                     currency: "usd"
 
                 };
-                */
+                console.log("Charge object ", charge)
+                
                this.props.history.push('/');
-               // this.props.createCharge(charge);
+                this.props.createCharge(charge);
             }
         })
         .catch(err=>{

@@ -263,6 +263,7 @@ export const getSizes =()=>dispatch=>{
     });
 }
 export const getProductAttr=(id)=>dispatch=>{
+    console.log("get PRoduct attr   ==== ", id);
     axios.get(`https://backendapi.turing.com/attributes/inProduct/${id}`)
     .then(res=>{
         //console.log("GETProductAttr");
@@ -272,6 +273,7 @@ export const getProductAttr=(id)=>dispatch=>{
         })
     })
     .catch(err=>{
+        console.log("get PRoduct attr get error ", id  , err)
         dispatch({
             type: types.GET_PRODUCT_ATTR, 
             payload: {}

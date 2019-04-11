@@ -14,7 +14,7 @@ class Products extends Component {
     }
   render() {
     //console.log(this.props);
-    const {rows, count} = this.props.products;
+    const {rows} = this.props.products;
     //console.log(rows);
     let productitem;
     if(rows){
@@ -41,8 +41,6 @@ class Products extends Component {
       <div className = "Products">
         {modalProduct}
             {productitem}
-            
-            
       </div>
     )
   }

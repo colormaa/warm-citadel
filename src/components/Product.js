@@ -1,8 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux';
-import classnames from 'classnames';
+//import classnames from 'classnames';
 import {getProductAttr, setProduct} from '../actions/productActions';
-import Modal from './Modal';
+//import Modal from './Modal';
 class Product extends React.Component{
   state = {
     size: 0, 
@@ -18,11 +18,12 @@ class Product extends React.Component{
     ////console.log(size.target.value);
   }
   onClickProduct =(id)=>{
-    this.props.getProductAttr(id);
+    //this.props.getProductAttr(id);
     ////console.log("On click product");
     this.setState({selected: true});
     ////console.log("this. ", this.state);
     this.props.setProduct(this.props.row.product_id);
+    this.props.getProductAttr(this.props.row.product_id);
   }
   closeModal=()=>{
     ////console.log("eee close Modal");
@@ -58,4 +59,4 @@ class Product extends React.Component{
 const  mapStateToProps =state=>({
   product: state.product
 });
-export default connect(mapStateToProps, {getProductAttr, setProduct})(Product);
+export default connect(mapStateToProps, {getProductAttr, getProductAttr, setProduct})(Product);

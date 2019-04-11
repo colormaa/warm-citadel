@@ -37,6 +37,9 @@
         font-size: 24px;
         margin-top: 10px;
     }
+    &__description{
+        margin: 30px 0;
+    }
     &__quantity{
         display: grid;
         &__button{
@@ -87,9 +90,19 @@
         width: 70%;
         
         select{
-            width: 100px;
+            width: 200px;
             border-radius: 4px;
             margin-bottom: 1rem;
+            padding: 7px;
+        }
+    }
+}
+@media only screen and (max-width: 900px){
+    .productdetail{
+        width: 400px;
+        grid-template-columns: 1fr;
+        &__first{
+            padding: 30px 0;
         }
     }
 }

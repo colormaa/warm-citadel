@@ -44,12 +44,13 @@ export const getTax =()=>dispatch=>{
     })
 }
 export const createCharge =(charge)=>dispatch=>{
+    console.log("============ within create charge");
     axios.post('https://backendapi.turing.com/stripe/charge', charge)
     .then(res=>{
-        //console.log("res ", res);
+        console.log("res  charge ====", res);
     })
     .catch(err=>{
-        //console.log("err ", err.response.error);
+        console.log("err  charge ", err.response);
     });
 }
 
@@ -70,17 +71,56 @@ export const createOrder =(order, header)=>dispatch=>{
         })
     })
 }
-export const getOrdersBycustomer =()=>dispatch=>{
-    //console.log("GEt ORders By Customer");
+
+export const getShippingById =(id)=>dispatch=>{
+    axios.get(`https://backendapi.turing.com/shipping/regions/${id}`)
+    .then(res=>{
+        console.log("getShipping ", id, res.data);
+        dispatch({
+            type: types.GET_SHIPPING, 
+            payload: res.data
+        })
+    })
+    .catch(err=>{
+        dispatch({
+            type: types.GET_SHIPPING, 
+            payload: []
+        })
+    })
+}
+
+export const getOrderDetail =(id)=>dispatch=>{
+    console.log("GEt ORders By Customer", id);
+    //, {headers: {"USER-KEY": token}}
+    axios.get(`https://backendapi.turing.com/orders/`, {id})
+    .then(res=>{
+        dispatch({
+            type: types.GET__ORDER__DETAIL, 
+            payload: res.data
+        })
+        console.log("get order by customer", res);
+    })
+    .catch(err=>{
+        console.log(" get order err", err)
+        dispatch({
+            type: types.GET__ORDER__DETAIL, 
+            payload: []
+        })
+    })
+}
+export const getOrdersByCustomer =(token)=>dispatch=>{
+    console.log("GEt ORders By Customer", token);
+    //, {headers: {"USER-KEY": token}}
     axios.get('https://backendapi.turing.com/orders/inCustomer')
     .then(res=>{
         dispatch({
             type: types.GET_ORDERS, 
             payload: res.data
         })
-        //console.log("get order by customer", res);
+        console.log("get order by customer", res);
     })
     .catch(err=>{
+        console.log(" get order err", err)
         dispatch({
             type: types.GET_ORDERS, 
             payload: []

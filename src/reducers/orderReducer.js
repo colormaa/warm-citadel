@@ -1,5 +1,5 @@
 import * as  types  from '../actions/types';
-import isEmpty from '../utils/is-empty';
+//import isEmpty from '../utils/is-empty';
 const initialState = {
     countries: [], 
     shippingregion: [], 
@@ -7,7 +7,9 @@ const initialState = {
     orderId: 0, 
     orders: [], 
     tax_id: 0, 
-    status: 1
+    status: 1, 
+    orderdetails: [], 
+    shipping: []
 }
 export default function(state = initialState, action){
     switch(action.type){
@@ -16,10 +18,25 @@ export default function(state = initialState, action){
                 ...state, 
                 countries: action.payload
             }
+            case types.GET_SHIPPING: 
+            return{
+                ...state, 
+                shipping: action.payload
+            }
+            case types.GET__ORDER__DETAIL:
+            return{
+                ...state, 
+                orderdetails:action.payload
+            }
             case types.GET_SHIPPING_REGION: 
             return {
                 ...state, 
                 shippingregion: action.payload
+            }
+            case types.GET_ORDERS: 
+            return{
+                ...state, 
+                orders: action.payload
             }
             case types.GET_TAX: 
             return {
