@@ -24,9 +24,10 @@ export default function(state = initialState, action){
         case types.CART_LOGOUT: 
         return{
             ...state, 
-            cartId: null, 
+            cartId: null,
+		  items: [], 
             total: 0, 
-            items: []
+            
         }
         case types.CART_STATUS:
         return{

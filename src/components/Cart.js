@@ -5,8 +5,11 @@ import { emptyCart,setStatusZero, getTotalAmount,getCartProducts, removeItem, up
 class Cart extends Component {
   componentDidMount(){
     this.props.getTotalAmount(this.props.cart.cartId);
+console.log("this.props.cart", this.props.cart.cartId);
     if(this.props.cart.items.length === 0){
+	if(this.props.cart.cartId){
       this.props.getCartProducts(this.props.cart.cartId);
+	}
     }
   }
   componentWillReceiveProps(nextProps){
