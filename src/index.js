@@ -11,7 +11,7 @@ import {setCurrentUser, showlogin, logoutUser, setToken} from './actions/authAct
 import setAuthToken from './utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 
-//console.log = console.war= console.error = ()=>{};
+console.log = console.war= console.error = ()=>{};
 
 if(localStorage.jwtToken){
     setAuthToken(localStorage.jwtToken);
