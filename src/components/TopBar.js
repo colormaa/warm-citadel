@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import {Link, withRouter} from 'react-router-dom';
-import england from '../img/england.jpg';
+//import england from '../img/england.jpg';
 import TextInput from '../common/TextInput';
 import {connect} from 'react-redux';
 import Modal from './Modal';
 import Auth from './Auth';
-import FacebookAuth from 'react-facebook-auth';
-import facebookbutton from '../common/facebookbutton';
+//import FacebookAuth from 'react-facebook-auth';
+//import facebookbutton from '../common/facebookbutton';
 import {getTotalAmount } from '../actions/cartActions';
 import Button from '../common/Button';
 import {loginUser, registerUser, logoutUser, facebookLogin} from '../actions/authActions';
@@ -20,7 +20,6 @@ class TopBar extends Component {
             name: '', 
             password: '', 
             email: '', 
-            password2: ''
         }, 
         login: {
             email: '', 
@@ -36,7 +35,17 @@ class TopBar extends Component {
             this.setState({error: nextProps.error});
         }
         if(nextProps.auth){
+            const login = {
+                email: '', 
+                password: ''
+            };
+            const register = {
+                email: '', 
+                name: '', 
+                password: ''
+            }
             if(nextProps.auth.isAuthenticated){
+                this.setState({login: login, register: register, errors: {}});
                 this.setState({loginClicked: false, registerClicked: false})
             }
             if(nextProps.auth.loginshow){
@@ -63,6 +72,7 @@ class TopBar extends Component {
     }
     logoutUser=()=>{
         this.props.logoutUser();
+        this.props.history.push('/');
     }
     
     onChangeRegister =(e)=>{
@@ -102,9 +112,8 @@ class TopBar extends Component {
         // Api call to server so we can validate the token
       };
     onLoginClick =()=>{
-        ////////console.log("login modal clicked");
+        // console.log("login modal clicked");
         const regcus = {
-           
             email: this.state.login.email, 
             password: this.state.login.password
         }
@@ -118,9 +127,7 @@ class TopBar extends Component {
     }
   render() {
       const errorlogin = this.state.error;
-      ////////console.log(this.props.auth);
-      ////////console.log(errorlogin);
-    return (
+          return (
       <div className = "topbar">
     {this.state.registerClicked ? (
         <Modal closeModal = {this.closeModal}>
@@ -135,12 +142,7 @@ class TopBar extends Component {
               </div>   
 
             }
-            facebook = {<FacebookAuth
-                appId="352854622106208"
-                callback={this.authenticate}
-                component={facebookbutton}
-              />}
-
+            
             
            >
            
@@ -195,16 +197,6 @@ class TopBar extends Component {
             </Auth>
             </Modal>
         ): null}
-         {/*}
-        <div className="dropdown">
-            <button className="dropbtn">Dropdown</button>
-            <div className="dropdown-content">
-            <Link to="/">Link 1</Link>
-            <Link to="/">Link 2</Link>
-           
-            </div>
-        </div>
-        */}
         <h3 className = "topbar__auth"><p>Hi!</p>
          
         {this.props.auth.isAuthenticated ? 
@@ -230,13 +222,8 @@ class TopBar extends Component {
         <h3 className = "topbar__helper">
             <Link to ="/" className = "nav-link black">Home</Link>
            
-            <Link to ="/" className = "nav-link black">Help & Contact</Link>
-        </h3>
-        {/*
-        <div className="topbar__lang">
-            <img src={england} width = "24px" height = "12px" alt=""/>
-            <Link to = "/" className = "nav-link black"> L GBP</Link>
-        </div>*/}
+                    </h3>
+        
         <div className="topbar__shop">
         <i className="fas fa-shopping-bag"></i>
                 

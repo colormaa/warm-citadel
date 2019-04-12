@@ -13,7 +13,7 @@ export const registerUser =(regcus)=>dispatch=>{
         const customer = jwt_decode(token);
         localStorage.setItem('jwtToken', token);
         setAuthToken(token);
-        dispatch(setProductFromSaved());
+        
         dispatch(setCurrentUser(customer));
         dispatch(setToken({token: token, customer: customer}));
         dispatch({
@@ -73,12 +73,12 @@ export const loginUser =(regcus)=>dispatch=>{
     ////console.log("logiNUser", regcus);
     axios.post('https://backendapi.turing.com/customers/login', regcus)
     .then(res=>{
-       // //console.log(res);
+       console.log("Login user action ",res);
         const token = res.data.accessToken;
         const customer = jwt_decode(token);
         localStorage.setItem('jwtToken', token);
         setAuthToken(token);
-        dispatch(setProductFromSaved())
+        dispatch(setToken({token: token, customer: customer}));
         dispatch(setCurrentUser(customer));
         dispatch({
             type: types.HIDE_LOGIN
@@ -115,6 +115,12 @@ export const logoutUser =()=>dispatch =>{
 
     //set current user to null and isAuthenticated equals = false 
    dispatch(setCurrentUser({}));
+   dispatch({
+       type: types.CART_LOGOUT
+   });
+   dispatch({
+       type: types.ORDER_LOGOUT
+   })
    dispatch({
         type: types.HIDE_LOGIN
     })  

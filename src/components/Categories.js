@@ -34,7 +34,7 @@ class Categories extends Component {
     }
     //console.log("this.props.product", this.props.product);
    // //console.log(this.props.product, categories);
-    let coloritems, sizeitems, departmentitems, categoryitems ;
+    let departmentitems, categoryitems ;
    // //console.log("colors ", colors, sizes);
     
    // //console.log("departments ", departments);
@@ -48,7 +48,7 @@ class Categories extends Component {
    // //console.log("categories ", categories);
     if(categories){
    //   //console.log("Catroeis if ", categories.rows);
-      categories = categories;
+      //categories = categories;
       categoryitems = categories.map(cat =>(
         <button key = {cat.category_id} onClick = {()=>this.categoryOnClick(cat.category_id)} > {cat.name}   </button>
       ))

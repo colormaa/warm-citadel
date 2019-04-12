@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 class Payment extends Component {
     componentWillMount(){
-        if(this.props.order.orderId ==0 || this.props.order.status == 0) {
+        if(parseInt(this.props.order.orderId) ===0 || parseInt(this.props.order.status) === 0 || !this.props.order.order) {
             this.props.history.push("/");
         }
     }

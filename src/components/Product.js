@@ -59,4 +59,4 @@ class Product extends React.Component{
 const  mapStateToProps =state=>({
   product: state.product
 });
-export default connect(mapStateToProps, {getProductAttr, getProductAttr, setProduct})(Product);
+export default connect(mapStateToProps, {getProductAttr, setProduct})(Product);

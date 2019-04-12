@@ -4,7 +4,7 @@ import {getCountries, getShippingRegion, getShippingById, createOrder, getTax, u
 import {createCart} from '../actions/cartActions';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import isEmpty from '../utils/is-empty';
+//import isEmpty from '../utils/is-empty';
 class Order extends Component {
     state = {
         address1: '', 
@@ -157,13 +157,13 @@ class Order extends Component {
           ))
       }
       let tax_price = null;
-      let tax_temp = this.props.order.tax.find(el=>(el.tax_id == this.state.tax));
+      let tax_temp = this.props.order.tax.find(el=>(parseInt(el.tax_id) === parseInt(this.state.tax)));
       if(tax_temp){
         tax_price = Number(tax_temp.tax_percentage).toFixed(2);
       
       }
       let ship = null;
-      let ship_temp = this.props.order.shipping.find(el=>(el.shipping_id == this.state.shipping));
+      let ship_temp = this.props.order.shipping.find(el=>(parseInt(el.shipping_id) === parseInt(this.state.shipping)));
       if(ship_temp){
           ship = ship_temp.shipping_cost;
       }

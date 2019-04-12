@@ -61,7 +61,7 @@ class Cart extends Component {
     //const products = this.props.cart.products;
     const products = this.props.cart.items;
     //console.log("PRoduct list", products.length);
-    let totalPrice=0;
+   // let totalPrice=0;
     if(products.length >=1 ){
        
        //totalPrice = products.map(pro=> (pro.quantity * (pro.product.discounted_price == 0 ? pro.product.price : pro.product.discounted_price))).reduce((acc, cur)=> acc + cur); 
@@ -84,7 +84,7 @@ class Cart extends Component {
               </td>
               <td>
                 <p>{/*pro.product.discounted_price == 0 ? pro.product.price : pro.product.discounted_price*/}
-                    {pro.item_id}
+                    {pro.price}
                 </p>
               </td>
               <td>

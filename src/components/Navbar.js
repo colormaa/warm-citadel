@@ -28,14 +28,9 @@ class Navbar extends Component {
     }
     onSubmit=(e)=>{
         e.preventDefault();
-        //console.log("search clicked");
-        /*
-        if(this.state.search === ''){
-            this.props.getProducts(1, this.props.product.limit);
-        }else{
-            this.props.productSearch(this.state.search, 1, this.props.product.limit);
-        }
-        */
+        
+       this.props.history.push('/');
+       
         this.props.getProducts(this.state.search, 0, 0, 1, this.props.product.limit);
     }
     searchCloseClicked =(e)=>{

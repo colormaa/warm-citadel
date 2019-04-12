@@ -1,11 +1,11 @@
 import React from 'react'
 import classnames from 'classnames';
-import axios from 'axios';
+//import axios from 'axios';
 import {connect} from 'react-redux';
-import {setProduct, getProductAttr, setSaveProduct} from '../actions/productActions'
+import {setProduct, getProductAttr} from '../actions/productActions'
 import {showLogin} from '../actions/authActions';
 import {createCart, addProduct} from '../actions/cartActions';
-import Axios from 'axios';
+//import Axios from 'axios';
 class ProductDetail extends React.Component {
     state = {
         quantity: 1, 
@@ -29,7 +29,7 @@ class ProductDetail extends React.Component {
         let vv = "aa";
         vv = this.props.product.productattr.find(el =>
             //console.log("el ",e.target.value,el.attribute_value_id,el.attribute_value_id == e.target.value)
-           el.attribute_value_id == e.target.value
+           parseInt(el.attribute_value_id) === parseInt(e.target.value)
             
         )
         if(e.target.value === "0")
@@ -85,53 +85,7 @@ class ProductDetail extends React.Component {
                         });
                     }
                 }
-                
-                
-
-                {/*
-                let vvv = this.props.cart.products.find(ob =>ob.product.product_id == this.props.product.product.product_id
-                        && ob.size.attribute_value_id == this.state.size.attribute_value_id 
-                        && ob.color.attribute_value_id == this.state.color.attribute_value_id
-                    );
-                //console.log(vvv);
-                
-                if(vvv){
-
-                    let totalPrice = 0;
-                    if(this.props.cart.products.length !==0 ){
-                        totalPrice =  this.props.cart.products.map(pro =>{
-                        let price = pro.product.discounted_price == 0 ? pro.product.price : pro.product.discounted_price;
-                        return price * pro.quantity
-                    }).reduce((total, sum) => total + sum);
-                }
-                    const product = this.props.product.product;
-                    totalPrice +=(product.discounted_price == 0 ? product.price : product.discounted_price) * this.state.quantity; 
-                    let temp = vvv.quantity + this.state.quantity;
-                    this.props.addQuantityProduct({
-                        product: this.props.product.product, 
-                        quantity: temp, 
-                        size: this.state.size, 
-                        color: this.state.color
-                    }, totalPrice);
-                }else{
-                    let totalPrice = 0;
-                    if(this.props.cart.products.length !==0 ){
-                        totalPrice =  this.props.cart.products.map(pro =>{
-                        let price = pro.product.discounted_price == 0 ? pro.product.price : pro.product.discounted_price;
-                        return price * pro.quantity
-                    }).reduce((total, sum) => total + sum);
-                }
-                    const product = this.props.product.product;
-                    totalPrice +=(product.discounted_price == 0 ? product.price : product.discounted_price) * this.state.quantity; 
-                    this.props.addProduct({
-                        product: this.props.product.product, 
-                        quantity: this.state.quantity, 
-                        size: this.state.size, 
-                        color: this.state.color
-                    }, totalPrice);
-                }
-            */}
-                
+            
                 this.props.closeModal();
             }
             //console.log(this.state);
@@ -162,7 +116,8 @@ class ProductDetail extends React.Component {
                 color.push(pr);
             }else if(pr.attribute_name === "Size"){
                 size.push(pr);
-            } 
+            }
+            return null; 
             })
             
     }
@@ -193,7 +148,7 @@ class ProductDetail extends React.Component {
         <div className = "productdetail__second">
             <h3 className="productdetail__title">{product.name}</h3>
 
-            <h3 className="productdetail__price">${product.discounted_price == 0  ? product.price: product.discounted_price}</h3>
+            <h3 className="productdetail__price">${parseInt(product.discounted_price) === 0  ? product.price: product.discounted_price}</h3>
             <p className="productdetail__description">{product.description}</p>
             <div className="productdetail__color">
                 <h4 className="productdetail__subtitle">
@@ -236,4 +191,4 @@ const mapStateToProps =(state)=>({
     auth: state.auth, 
     cart: state.cart
 })
-export default connect(mapStateToProps, {setProduct, getProductAttr, showLogin, setSaveProduct, createCart, addProduct})(ProductDetail);
+export default connect(mapStateToProps, {setProduct, getProductAttr, showLogin, createCart, addProduct})(ProductDetail);

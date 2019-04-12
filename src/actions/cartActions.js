@@ -1,7 +1,7 @@
 import * as types from './types';
 import axios from 'axios';
-import setAuthToken from '../utils/setAuthToken';
-import jwt_decode from 'jwt-decode';
+//import setAuthToken from '../utils/setAuthToken';
+//import jwt_decode from 'jwt-decode';
 
 export const createCart =(cartId)=>dispatch=>{
 ////console.log("registerUser", regcus)
@@ -64,25 +64,27 @@ export const addProduct =(product)=>dispatch=>{
 
 
 export const getTotalAmount =(cartid)=>dispatch=>{
-    console.log("getTotalAmount");
+    console.log("getTotalAmount", cartid);
     if(cartid){
         axios.get(`https://backendapi.turing.com/shoppingcart/totalAmount/${cartid}`)
         .then(res=>{
             dispatch({
                 type: types.CART_TOTAL, 
-                payload: res.data.total_amount
+                payload: (res.data.total_amount ? res.data.total_amount : 0)
             });
         })
         .catch(err=>{
+            console.log("found  err ", err.response);
             dispatch({
                 type: types.CART_TOTAL, 
-                payload: 0.0
+                payload: 0
             });
         });
     }else{
+        console.log("cart is null ", cartid);
         dispatch({
             type: types.CART_TOTAL, 
-            payload: 0.0
+            payload: 0
         });
     }
 }

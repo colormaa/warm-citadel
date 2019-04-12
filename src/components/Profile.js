@@ -10,12 +10,12 @@ import classnames from 'classnames';
  class Profile extends Component {
      state = {
          showModal: 0, 
-         address1: null, 
-         address2: null, 
-         city: null, 
-         region: null, 
-         postalcode: null, 
-         country: null, 
+         address1: '', 
+         address2: '', 
+         city: '', 
+         region: '', 
+         postalcode: '', 
+         country: '', 
          erroraddress: '',
          errorinfo: '',
          errorcreditcard: '',
@@ -48,7 +48,7 @@ import classnames from 'classnames';
         this.setState({showModal : 2});
      }
      validateEmail = (email) =>{
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var re = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
         return re.test(String(email).toLowerCase());
     }
      onSubmitInfoClick = (e)=>{
@@ -78,7 +78,7 @@ import classnames from 'classnames';
      onSubmitCreditCardClick =(e)=>{
          let error = false;
          //console.log("On submit creditCard click");
-         if(this.state.credit_card == ''){
+         if(this.state.credit_card === ''){
              error = true;
          }
          const info = {credit_card: this.state.credit_card};
@@ -92,39 +92,39 @@ import classnames from 'classnames';
      }
      onSubmitAddressClick =(e)=>{
         const addressinfo = {
-            address_1: this.state.address1, 
-            address_2: this.state.address2, 
-            city: this.state.city, 
-            region: this.state.region, 
-            postal_code: this.state.postalcode, 
-            country: this.state.country, 
+            address_1: this.state.address1.trim(), 
+            address_2: this.state.address2.trim(), 
+            city: this.state.city.trim(), 
+            region: this.state.region.trim(), 
+            postal_code: this.state.postalcode.trim(), 
+            country: this.state.country.trim(), 
             shipping_region_id: this.state.shippingregion
         }
         //console.log(addressinfo);
-        if(this.state.shippingregion == 0) { this.state.shippingregion = 1;}
+        if(parseInt(this.state.shippingregion) === 0) { this.setState({shippingregion : 1});}
         let errors = {};
         errors.field = false;
-        if(this.state.address1 === '' || this.state.address1 == null){
+        if(this.state.address1.trim() === '' || this.state.address1 == null){
             errors.field  = true;
         }
         //console.log(errors);
-        if(this.state.address2 === '' || this.state.address2 == null){
+        if(this.state.address2.trim() === '' || this.state.address2 == null){
             errors.field =true;
         }
         //console.log(errors);
-        if(this.state.city === '' || this.state.city == null){
+        if(this.state.city.trim() === '' || this.state.city == null){
             errors.field =true;
         }
         //console.log(errors);
-        if(this.state.region === '' || this.state.region == null){
+        if(this.state.region.trim() === '' || this.state.region == null){
             errors.field  = true;
         }
         //console.log(errors);
-        if(this.state.postalcode === '' || this.state.postalcode == null){
+        if(this.state.postalcode.trim() === '' || this.state.postalcode == null){
             errors.field = true;
         }
         //console.log(errors);
-        if(this.state.country === '' || this.state.country== null){
+        if(this.state.country.trim() === '' || this.state.country== null){
             errors.field = true;
         }
         //console.log(errors, this.state.country);
@@ -132,18 +132,18 @@ import classnames from 'classnames';
             errors.field = true;
         }
         //console.log(errors);
-        if(this.state.address1 ==null)
-        this.state.address1 = '';
-        if(this.state.address2 == null)
-        this.state.address2 = '';
-        if(this.state.city == null)
-        this.state.city = '';
-        if(this.state.region == null)
-        this.state.region = '';
-        if(this.state.postalcode == null)
-        this.state.postalcode = '';
-        if(this.state.country == null)
-        this.state.country = '';
+        if(this.state.address1.trim() ==='')
+        this.setState({address1 : ''});
+        if(this.state.address2.trim() === '')
+        this.setState({address2 :''});
+        if(this.state.city.trim() === '')
+        this.setState({city : ''});
+        if(this.state.region.trim() === '')
+        this.setState({region: ''});
+        if(this.state.postalcode.trim() === '')
+        this.setState({postalcode : ''});
+        if(this.state.country.trim() === '')
+        this.setState({country : ''});
         if(errors.field){
             this.setState({erroraddress: " Required fields."});
         }else{
@@ -155,6 +155,7 @@ import classnames from 'classnames';
          this.setState({showModal: 0});
      }
      onChangeAddress =(e)=>{
+
         this.setState({[e.target.name]: e.target.value});
      }
      onChangeInfo =(e)=>{
@@ -173,7 +174,7 @@ import classnames from 'classnames';
       let customer = this.props.auth.user;
       
         let showModal = null;
-        if(this.state.showModal == 1){
+        if(this.state.showModal === 1){
             showModal = (
                 <Modal closeModal = {this.closeModal}>
             <Auth title = "Update Info"
@@ -183,39 +184,32 @@ import classnames from 'classnames';
                   <Button text = "Update Info" onClick = {this.onSubmitInfoClick} type = "button" color ="red-pink"/>  
               </div>  
             }>
-            {/*}
-                   name: this.props.auth.name, 
-         email: this.props.auth.customer.email, 
-        password: '', 
-        day_phone: '', 
-        eve_phone: '', 
-        mob_phone: ''*/}
+            
+                           
                         <TextInput placeholder = "* Name" type = "text" 
                             error = {this.state.name ===''}
                             name = "name" onChange = {this.onChangeInfo}
                             value = {this.state.name }/>
-
+                               
                         <TextInput placeholder = "* Email" type = "text" 
                         name = "email" onChange = {this.onChangeInfo}
                         error = {this.state.email === ''||  !this.validateEmail(this.state.email)}
                         value = {this.state.email}/>
-
+                         
                         <TextInput placeholder = "Password" type = "password" 
                         name = "password" onChange = {this.onChangeInfo}
-                       
                         value = {this.state.password}/>
-
+                         
                          <TextInput placeholder = "Day Phone" type = "text" 
-                        name = "day_phone" onChange = {this.onChangeInfo}
-                        
+                        name = "day_phone" onChange = {this.onChangeInfo}                      
                         value = {this.state.day_phone}/>
-
-                         <TextInput placeholder = "Eve phone" type = "text" 
+                          
+                         <TextInput placeholder = "Eve Phone" type = "text" 
                         name = "eve_phone" onChange = {this.onChangeInfo}
                         
                         value = {this.state.eve_phone}/>
-
-                        <TextInput placeholder = "* Mob phone" type = "text" 
+                        
+                        <TextInput placeholder = " Mob phone" type = "text" 
                         name = "mob_phone" onChange = {this.onChangeInfo}
                        
                         value = {this.state.mob_phone}/>
@@ -223,7 +217,7 @@ import classnames from 'classnames';
             </Auth>
         </Modal>
             );
-        }else if(this.state.showModal == 2){
+        }else if(this.state.showModal === 2){
             showModal = (
                 <Modal closeModal = {this.closeModal}>
             <Auth title = "Update Address"
@@ -233,37 +227,37 @@ import classnames from 'classnames';
                   <Button text = "Update Address" onClick = {this.onSubmitAddressClick} type = "button" color ="red-pink"/>  
               </div>  
             }>
-                        <TextInput placeholder = "* Address 1" type = "text" 
-                            error = {this.state.address1 ===''}
-                            name = "address1" onChange = {this.onChangeAddress}
-                            value = {this.state.address1 }/>
+                <TextInput placeholder = "* Address 1" type = "text" 
+                    //error = {this.state.address1 ===''}
+                    name = "address1" onChange = {this.onChangeAddress}
+                    value = {this.state.address1 }/>
 
-                        <TextInput placeholder = "* Address 2" type = "text" 
-                        name = "address2" onChange = {this.onChangeAddress}
-                        error = {this.state.address2 === ''}
-                        value = {this.state.address2}/>
+                <TextInput placeholder = "* Address 2" type = "text" 
+                    name = "address2" onChange = {this.onChangeAddress}
+                    //error = {this.state.address2 === ''}
+                    value = {this.state.address2}/>
 
                         <TextInput placeholder = "* City" type = "text" 
                         name = "city" onChange = {this.onChangeAddress}
-                        error = {this.state.city=== ''}
+                       // error = {this.state.city=== ''}
                         value = {this.state.city}/>
 
                          <TextInput placeholder = "* Region" type = "text" 
                         name = "region" onChange = {this.onChangeAddress}
-                        error = {this.state.region=== ''}
+                        //error = {this.state.region=== ''}
                         value = {this.state.region}/>
 
                          <TextInput placeholder = "* Postal code" type = "text" 
                         name = "postalcode" onChange = {this.onChangeAddress}
-                        error = {this.state.postalcode === ''}
+                        //error = {this.state.postalcode === ''}
                         value = {this.state.postalcode}/>
 
                          <TextInput placeholder = "* Country" type = "text" 
                         name = "country" onChange = {this.onChangeAddress}
-                        error = {this.state.country === ''}
+                        //error = {this.state.country === ''}
                         value = {this.state.country}/>
                         <select style = {{width: '100%', padding: '10px' }}  onChange = {this.onChangeShipping}
-                            className = {classnames(this.state.shippingregion == 1 ?  "border-red": null, "mb-30")}
+                            className = {classnames(this.state.shippingregion === 1 ?  "border-red": null, "mb-30")}
                         >
                             {this.props.order.shippingregion.map(sr =>(
                                 <option key = {sr.shipping_region_id} value={sr.shipping_region_id}>{sr.shipping_region}</option>
@@ -274,7 +268,7 @@ import classnames from 'classnames';
             );
 
             
-        }else if(this.state.showModal == 3){
+        }else if(this.state.showModal === 3){
             showModal = (
                 <Modal closeModal = {this.closeModal}>
             <Auth title = "Update Credit Card"

@@ -1,7 +1,7 @@
 import * as types from './types';
 import axios from 'axios';
-import setAuthToken from '../utils/setAuthToken';
-import jwt_decode from 'jwt-decode';
+//import setAuthToken from '../utils/setAuthToken';
+//import jwt_decode from 'jwt-decode';
 
 export const getCountries =()=>dispatch=>{
 ////console.log("registerUser", regcus)
@@ -48,26 +48,42 @@ export const createCharge =(charge)=>dispatch=>{
     axios.post('https://backendapi.turing.com/stripe/charge', charge)
     .then(res=>{
         console.log("res  charge ====", res);
+        dispatch({
+            type: types.CART_LOGOUT,
+        });
+        axios.post('https://backendapi.turing.com/stripe/webhooks',{})
+        .then(res=>{
+            console.log("res  charge webhook ====", res);
+            dispatch({
+                type: types.ORDER_LOGOUT,
+            });
+        })
+        .catch(err=>{
+            console.log("res  charge webhook ====", err);
+        });
     })
     .catch(err=>{
         console.log("err  charge ", err.response);
+        dispatch({type: types.CHARGE_ERROR, 
+        payload: err.response.data.error});
     });
 }
+
 
 export const createOrder =(order, header)=>dispatch=>{
     axios.post('https://backendapi.turing.com/orders', order, {headers: header})
     .then(res=>{
-        //console.log("order create res", res);
+        console.log("order create res", res);
         dispatch({
             type: types.CREATE_ORDER, 
-            payload: {order: res.data.orderId, tax: order.tax_id}
+            payload: {orderId: res.data.orderId, order: order}
         });
     })
     .catch(err=>{
-        //console.log("order crate error", err);
+        console.log("order crate error", err);
         dispatch({
             type: types.CREATE_ORDER, 
-            payload: {orderId: 0, tax: 0}
+            payload: {orderId: 0, order: null}
         })
     })
 }
@@ -92,7 +108,7 @@ export const getShippingById =(id)=>dispatch=>{
 export const getOrderDetail =(id)=>dispatch=>{
     console.log("GEt ORders By Customer", id);
     //, {headers: {"USER-KEY": token}}
-    axios.get(`https://backendapi.turing.com/orders/`, {id})
+    axios.get(`https://backendapi.turing.com/orders/${id}`)
     .then(res=>{
         dispatch({
             type: types.GET__ORDER__DETAIL, 

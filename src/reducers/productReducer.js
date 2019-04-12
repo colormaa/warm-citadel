@@ -1,11 +1,10 @@
 import * as types from '../actions/types';
 const initialState = {
     product: null,
-    savedproduct: null,
     productattr: [], 
     products: [], 
     loading: false, 
-    search: null,
+    search1: null,
     initial: 1, 
     limit: 20, 
     colors: [], 
@@ -16,7 +15,6 @@ const initialState = {
     department: 0
 }
 export default function (state = initialState, action){
-    //console.log("Product reducer", action);
     switch(action.type){
         case types.PRODUCTS_LOADING: 
             return{
@@ -95,7 +93,7 @@ export default function (state = initialState, action){
         case types.SET_SEARCH:
         return{
             ...state, 
-            search: action.search
+            search1: action.search
         }
     
         default: 

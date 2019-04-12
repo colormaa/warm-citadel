@@ -1,35 +1,12 @@
 import * as types from './types';
 import axios from 'axios';
-import setAuthToken from '../utils/setAuthToken';
-import jwt_decode from 'jwt-decode';
 /*
-export const getProducts =(start, limit)=>dispatch=>{
-    dispatch(setProductsLoading);
-    dispatch(setInitial(start));
-    dispatch(setSearch(null));
-    axios.get(`https://backendapi.turing.com/products?page=${start}&limit=${limit}`)
-    .then(res=>{
-        //console.log("res", res);
-        dispatch({
-            type: types.GET_PRODUCTS,
-            payload: res.data
-        });
-    })
-    .catch(err=>{
-        //console.log("err", err);
-        dispatch({
-            type: types.GET_PRODUCTS,
-            payload: []
-        })
-    })
-}
-*/
-export const setSaveProduct =(sproduct)=>dispatch=>{
+export const setSearch =(sproduct)=>dispatch=>{
     dispatch({
-        type: types.SET_SAVE_PRODUCT, 
+        type: types.SET_SEARCH, 
         payload: sproduct
     });
-}
+}*/
 export const getCategoriesOfDepartment =(depid)=>dispatch=>{
 //    https://backendapi.turing.com/categories/inDepartment/1
 //console.log("GEt categories of department");
@@ -173,6 +150,7 @@ export const setInitial =(count)=>{
     }
 }
 export const setSearch =(search)=>{
+    console.log("Set Search ", search );
     return{
         type: types.SET_SEARCH,
         payload: search 

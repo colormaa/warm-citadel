@@ -6,17 +6,44 @@ const initialState = {
     tax: [], 
     orderId: 0, 
     orders: [], 
-    tax_id: 0, 
+    order: null, 
     status: 1, 
     orderdetails: [], 
-    shipping: []
+    shipping: [], 
+    error:null
 }
 export default function(state = initialState, action){
     switch(action.type){
+        case types.ORDER_DETAIL: 
+        return{
+            ...state, 
+            
+        }
+        case types.CHARGE_ERROR: 
+        return{
+            ...state, 
+                error: action.payload
+        }
+        case types.CHARGE_SUCCESS: 
+        return{
+            ...state, 
+                orderId: 0, 
+                orders: [], 
+                order: null , 
+                orderdetails: []
+        }
         case types.GET_COUNTRIES: 
             return {
                 ...state, 
                 countries: action.payload
+            }
+            case types.ORDER_LOGOUT: 
+            return{
+                ...state, 
+                orderId: 0, 
+                orders: [], 
+                order: null , 
+                orderdetails: []
             }
             case types.GET_SHIPPING: 
             return{
@@ -46,8 +73,8 @@ export default function(state = initialState, action){
             case types.CREATE_ORDER: 
             return {
                 ...state, 
-                orderId: action.payload.order, 
-                tax_id: action.payload.tax
+                orderId: action.payload.orderId, 
+                order: action.payload.order
             }
             case types.STATUS: 
             return{

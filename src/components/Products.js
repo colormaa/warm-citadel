@@ -29,10 +29,11 @@ class Products extends Component {
       }
     }
     let modalProduct;
-    {this.props.product.product ? 
+    if(this.props.product.product){ 
       modalProduct = (<Modal closeModal = {this.closeModal}>
         <ProductDetail closeModal = {this.closeModal} product = {this.props.product.product}  />
-    </Modal>) : 
+    </Modal>);
+    }else{
             modalProduct=null
     }
     
@@ -40,7 +41,7 @@ class Products extends Component {
     return (
       <div className = "Products">
         {modalProduct}
-            {productitem}
+        {productitem}
       </div>
     )
   }

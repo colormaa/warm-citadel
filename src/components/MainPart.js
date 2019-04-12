@@ -19,7 +19,9 @@ class MainPart extends React.Component{
         }
     }
     componentDidMount(){
-        this.props.getProducts(this.props.product.search, this.props.product.department, this.props.product.category, this.state.initial, this.state.limit);
+        console.log("component did no found", this.props.product.search1
+        )
+        this.props.getProducts(this.props.product.search1, this.props.product.department, this.props.product.category, this.state.initial, this.state.limit);
        
     }
     paginationClick =(e)=>{

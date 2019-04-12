@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
-import Store from './store';
-import {Provider, connect} from 'react-redux';
+//import Store from './store';
+import { connect} from 'react-redux';
 import {withRouter, Route, Switch} from 'react-router-dom';
 import TopBar from './components/TopBar';
 import Navbar from './components/Navbar';
@@ -9,7 +9,7 @@ import MainPart from './components/MainPart';
 import NotFound from './components/NotFound';
 import Cart from './components/Cart';
 //import PrivateRoute from './utils/PrivateRoute';
-import PrivateRoute from 'react-private-route';
+//import PrivateRoute from 'react-private-route';
 import Order from './components/Order';
 import Payment from './components/Payment';
 import OrderHome from './components/OrderHome';

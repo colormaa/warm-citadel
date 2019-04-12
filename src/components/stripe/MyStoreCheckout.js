@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {CardElement,  PaymentRequestButtonElement, injectStripe} from 'react-stripe-elements';
+import {CardElement, injectStripe} from 'react-stripe-elements';
 import TextInput from '../../common/TextInput';
 import {createCharge} from '../../actions/orderActions';
 import {connect} from 'react-redux';
@@ -11,6 +11,14 @@ class MyStoreCheckout extends Component {
         errormessage: null, 
         errorname: null
        
+    }
+    componentWillReceiveProps(nextProps){
+    if((nextProps.order.error !== this.props.order.error) && nextProps.order.error){
+        this.setState({errormessage: nextProps.order.error.message});
+    }
+    if((!nextProps.order.orderId) || !nextProps.order.order){
+        this.props.history.push("/");
+    }
     }
     onChange = (e)=>{
         this.setState({[e.target.name]: e.target.value});
@@ -30,20 +38,41 @@ class MyStoreCheckout extends Component {
                 const errorcard = res.error.message;
                 this.setState({errormessage: errorcard});
             }else{
+                const order = this.props.order;
                 this.setState({errormessage: null});
+                let tax_price = null;
+                let tax_temp = this.props.order.tax.find(el=>(parseInt(el.tax_id) === parseInt(order.tax_id)));
+                if(tax_temp){
+                    tax_price = Number(tax_temp.tax_percentage).toFixed(2);
                 
-                const charge = {
+                }
+                let ship = null;
+                let ship_temp = this.props.order.shipping.find(el=>(parseInt(el.shipping_id) === parseInt(order.shipping_id)));
+                if(ship_temp){
+                    ship = ship_temp.shipping_cost;
+                }
+
+                let total = 0;
+                let total1 = 0;
+                total += parseFloat(this.props.cart.total);
+                total1 = (tax_price ?Number(parseFloat(tax_price*parseFloat(this.props.cart.total)/100)).toFixed(2) : 0.0);
+                total += (ship ? parseFloat(ship): 0.0);
+                total = parseFloat(total)+parseFloat(total1);
+                total = Math.round(parseFloat(total) * 100);
+               console.log("total" , total);
+                 const charge = {
                     stripeToken: res.token.id, 
                     order_id: this.props.order.orderId, 
                     description: "Order", 
-                    amount: Math.round(this.props.cart.total), 
+                    amount: total, 
                     currency: "usd"
 
                 };
                 console.log("Charge object ", charge)
                 
-               this.props.history.push('/');
+              //this.props.history.push('/');
                 this.props.createCharge(charge);
+
             }
         })
         .catch(err=>{

@@ -6,11 +6,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Store from './store';
 import {Provider} from 'react-redux';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import {setCurrentUser, showlogin, logoutUser, setToken} from './actions/authActions';
 import setAuthToken from './utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
-//console.log = console.war= console.error = ()=>{};
+
+console.log = console.war= console.error = ()=>{};
 
 if(localStorage.jwtToken){
     setAuthToken(localStorage.jwtToken);
@@ -38,7 +39,7 @@ const app = (
             <App />
           </BrowserRouter>
     </Provider>
-)
+);
 ReactDOM.render(app, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
