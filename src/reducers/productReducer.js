@@ -93,7 +93,7 @@ export default function (state = initialState, action){
         case types.SET_SEARCH:
         return{
             ...state, 
-            search1: action.search
+            search1: action.payload
         }
     
         default: 

@@ -77,8 +77,9 @@ class OrderHome extends Component {
       if(this.state.showModal){
           orderdetail = this.props.order.orderdetails.map(od=>{
             return(
-              <tr key = {od.product_id}>
+              <tr key = {od.product_id +od.attributes}>
                 <td>{od.product_name}</td>
+                <td>{od.attributes}</td>
                 <td>{od.quantity}</td>
                 <td>{od.unit_cost}</td>
                 <td>{od.subtotal}</td>
@@ -93,6 +94,7 @@ class OrderHome extends Component {
                   <tbody>
                     <tr>
                       <td>Product name</td>
+                      <td>Attributes</td>
                       <td>Quantity</td>
                       <td>Unit Cost</td>
                       <td>Subtotal</td>
