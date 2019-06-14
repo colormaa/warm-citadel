@@ -142,8 +142,8 @@ class ProductDetail extends React.Component {
   return (
     <div className = "productdetail">
         <div className = "productdetail__first">
-            <img src={"https://backendapi.turing.com/images/products/"+product.thumbnail} alt="" className = "productdetail__img productdetail__img__big"/>
             
+            <img src={this.props.product.productImage ? this.props.product.productImage[parseInt(product.product_id-1)].image: "./img/empty.jpg"} className = "productdetail__img productdetail__img__big" alt=""/>
         </div>
         <div className = "productdetail__second">
             <h3 className="productdetail__title">{product.name}</h3>

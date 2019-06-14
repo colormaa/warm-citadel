@@ -12,7 +12,8 @@ const initialState = {
     departments: null, 
     categories:null, 
     category: 0,
-    department: 0
+    department: 0, 
+    productImage: []
 }
 export default function (state = initialState, action){
     switch(action.type){
@@ -26,6 +27,11 @@ export default function (state = initialState, action){
             ...state, 
             products: action.payload, 
             loading: false
+        }
+        case types.SET_PRODUCT_IMAGE: 
+        return{
+            ...state, 
+            productImage: action.payload
         }
         case types.SET_SAVE_PRODUCT: 
         return{
@@ -100,3 +106,4 @@ export default function (state = initialState, action){
             return state;
     }
 }
+

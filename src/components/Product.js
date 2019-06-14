@@ -33,7 +33,7 @@ class Product extends React.Component{
   }
 
   render(){
-    
+    //console.log("this. cnsole render", this.props.product.productImage)
   
     return (
       <div className = "product" onMouseEnter={(e)=>this.onMouseEntered(e, this.props.row.product_id)} onClick = {()=>this.onClickProduct()}  >
@@ -41,7 +41,7 @@ class Product extends React.Component{
           {this.props.row.discounted_price > 0?  <div className="product__hot">SALE</div>: null}
           
           <div className="product__image">
-              <img src={`https://backendapi.turing.com/images/products/${this.props.row.thumbnail}`} alt=""/>
+              <img src={this.props.product.productImage ? this.props.product.productImage[parseInt(this.props.row.product_id-1)].image: "./img/empty.jpg"} alt=""/>
           </div>
           <h3 className="product__title">
               {this.props.row.name}
@@ -60,3 +60,6 @@ const  mapStateToProps =state=>({
   product: state.product
 });
 export default connect(mapStateToProps, {getProductAttr, setProduct})(Product);
+/*
+<img src={`https://backendapi.turing.com/images/products/${this.props.row.thumbnail}`} alt=""/>
+*/

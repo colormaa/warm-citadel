@@ -26,6 +26,15 @@ export const getCategoriesOfDepartment =(depid)=>dispatch=>{
             });
         })
 }
+
+export const setProductImage=(images)=>dispatch=>{
+    dispatch({
+        type: types.SET_PRODUCT_IMAGE, 
+        payload: images
+    })
+}
+
+
 export const getProducts =(search, departmentid, categoryid, page, limit)=>dispatch=>{
     //console.log("get products =================", search, departmentid, categoryid, page, limit);
     dispatch(setProductsLoading);
