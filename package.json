@@ -8,7 +8,7 @@
     "date-and-time": "^0.6.3",
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-facebook-auth": "^1.4.0",
